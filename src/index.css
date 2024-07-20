@@ -23,6 +23,7 @@ a:hover {
 }
 
 body {
+  background-image: url('C:\Users\Bilal\workspace\igmg-vakitmatik-frontend\ressources\vakitmatik-background.png');
   margin: 0;
   display: flex;
   place-items: center;
@@ -65,4 +66,513 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+@keyframes blink-in-text {
+  0% {
+    color: #008B00;
+  }
+  50% {
+    color: white; 
+  }
+  100% {
+    color: #008B00; 
+  }
+}
+
+.blinking-in-text {
+  animation: blink-in-text  2s infinite; 
+}
+
+@keyframes blink-in-div {
+  0% {
+    background-color: white; 
+  }
+  50% {
+    background-color: #008B00;
+  }
+  100% {
+    background-color: white;
+  }
+}
+
+.blinking-in-div {
+  animation: blink-in-div 2s infinite; 
+}
+
+@keyframes blink-out-text {
+  0% {
+    color: #8b0000; 
+  }
+  50% {
+    color: white; 
+  }
+  100% {
+    color: #8b0000; 
+  }
+}
+
+.blinking-out-text {
+  animation: blink-out-text  2s infinite; 
+}
+
+@keyframes blink-out-div {
+  0% {
+    background-color: white; 
+  }
+  50% {
+    background-color: #8b0000; 
+  }
+  100% {
+    background-color: white; 
+  }
+}
+
+.blinking-out-div {
+  animation: blink-out-div 2s infinite; 
+}
+
+
+.vakitmatik-vorlage-1 {
+  background: url('../ressources/Vakitmatik_Vorlage.png') 50% / cover no-repeat;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 100%;
+}
+
+
+
+.muhammad {
+  background: url('../ressources/muhammad.png') 50% / cover no-repeat;
+  position: absolute;
+  left: 50px;
+  bottom: 40px;
+  width: 180px;
+  height: 180px;
+  display: none;
+}
+
+.Allah {
+  background: url('../ressources/ALLAH.png') 50% / cover no-repeat;
+  position: absolute;
+  left: 60px;
+  bottom: 60px;
+  width: 150px;
+  height: 150px;
+  display: none;
+}
+
+
+.pray {
+  background: url('../ressources/dua.png') 50% / cover no-repeat;
+  position: absolute;
+  left: 60px;
+  bottom: 40px;
+  width: 180px;
+  height: 180px;
+  display: none;
+}
+
+
+.islamContainer {
+  position: absolute;
+  min-width: 1520px;
+  min-height: 180px; 
+  max-width: 1520px;
+  max-height: 180px;
+  overflow: auto; 
+  font-family: 'Arial';
+  font-weight: 400;
+  font-size: 40px;
+  color: #FFFFFF;
+  left: 300px; 
+  bottom: 30px; 
+  
+ 
+  text-align: center;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.religiousContentVerse {
+  margin-top: 10px; 
+  display: none;
+}
+.religiousContentHadith {
+  margin-top: 10px; 
+  display: none;
+}
+.religiousContentPray {
+  margin-top: 10px; 
+  display: none;
+}
+
+
+.arabic-latin-text {
+  margin: 0 auto; 
+  width: fit-content; 
+  font-family: 'Arial';
+  font-weight: 400; 
+  font-size: 35px; 
+  line-height: 1.333;
+  text-align: center;
+}
+
+.arabic-text {
+  margin: 0 auto;
+  width: fit-content; 
+  font-family: 'Arial';
+  font-weight: 400; 
+  font-size: 37px; 
+  line-height: 1.333;
+  text-align: center;
+}
+
+.arabic-latin-text, .arabic-text {
+  position: absolute; 
+  text-align: center; 
+  bottom: 3px;
+}
+
+.arabic-text {
+  opacity: 0; 
+}
+
+.arabic-latin-text {
+  animation: toggle-latin 15s infinite;
+}
+
+.arabic-text {
+  animation: toggle-arabic 15s infinite; 
+}
+
+@keyframes toggle-latin {
+  0%, 33.33% {
+    opacity: 1; 
+  }
+  33.34%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes toggle-arabic {
+  0%, 33.33% {
+    opacity: 0;
+  }
+  33.34%, 100% {
+    opacity: 1; 
+  }
+}
+
+.imsak {
+  position: absolute;
+  width: 440px;
+  height: 155px;
+  top: 295px; 
+  left: 25px; 
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  border-radius: 30px; 
+  
+  border: 7px solid white; 
+  border-radius: 20px; 
+  
+}
+
+.imsak-text {
+  margin-left: 20px; 
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 1.333;
+}
+
+.imsak-time {
+  margin-right: 15px; 
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 85px;
+  line-height: 1.333;
+}
+
+.gunes {
+  position: absolute;
+  width: 440px;
+  height: 155px;
+  top: 475px; 
+  left: 25px; 
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  border-radius: 30px; 
+  
+border: 7px solid white; 
+  border-radius: 20px; 
+
+}
+
+.gunes-text {
+  margin-left: 20px; 
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 1.333;
+  color: #000000;
+  text-align: center;
+}
+
+.gunes-time {
+  margin-right: 15px; 
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 85px;
+  line-height: 1.333;
+  color: #000000;
+}
+
+.oglen {
+  position: absolute;
+  width: 440px;
+  height: 155px;
+  top: 655px; 
+  left: 25px; 
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  border-radius: 30px; 
+  
+  
+  border: 7px solid white; 
+  border-radius: 20px; 
+}
+
+.oglen-text {
+  margin-left: 20px; 
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 1.333;
+  color: #000000;
+  text-align: center;
+}
+
+.oglen-time {
+  margin-right: 15px; 
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 85px;
+  line-height: 1.333;
+  color: #000000;
+}
+
+.ikindi {
+  position: absolute;
+  width: 440px;
+  height: 155px;
+  top: 295px; 
+  left: 485px; 
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  border-radius: 30px; 
+  border: 7px solid white; 
+  border-radius: 20px; 
+  
+}
+
+.ikindi-text {
+  margin-left: 20px; 
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 1.333;
+  color: #000000;
+  text-align: center;
+}
+
+.ikindi-time {
+  margin-right: 15px;
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 85px;
+  line-height: 1.333;
+  color: #000000;
+}
+
+.aksam {
+  position: absolute;
+  width: 440px;
+  height: 155px;
+  top: 475px;  
+  left: 485px; 
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  border-radius: 30px; 
+  
+ border: 7px solid white; 
+  border-radius: 20px; 
+}
+
+.aksam-text {
+  margin-left: 20px; 
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 1.333;
+  color: #000000;
+  text-align: center;
+}
+
+.aksam-time {
+  margin-right: 15px; 
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 85px;
+  line-height: 1.333;
+  color: #000000;
+}
+
+.yatsi {
+  position: absolute;
+  width: 440px;
+  height: 155px;
+  top: 655px;  
+  left: 485px; 
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  border-radius: 30px; 
+  border: 7px solid white; 
+  border-radius: 20px; 
+}
+
+.yatsi-text {
+  margin-left: 20px;
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 1.333;
+  color: #000000;
+  text-align: center;
+}
+
+.yatsi-time {
+  margin-right: 15px; 
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 85px;
+  line-height: 1.333;
+  color: #000000;
+}
+
+
+.containerTime {
+  position: absolute;
+  width: 865px;
+  height: 515px;
+  top: 295px; 
+  left: 955px; 
+  
+  text-align: center;
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  border: 7px solid white;
+  border-radius: 20px;
+}
+
+.localtime {
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 180px;
+  line-height: 1.333;
+  color: white;
+}
+
+.date-miladi {
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 63px;
+  line-height: 1.333;
+  color: white;
+}
+
+.date-hicri {
+  font-family: 'Arial';
+  font-weight: 600;
+  font-size: 63px;
+  line-height: 1.333;
+  color: white;
+}
+
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 60px;
+    width: 600px;
+}
+
+h2 {
+    margin: 0 0 40px;
+    text-align: center;
+    font-size: 32px;
+}
+
+#login-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#login-list li {
+    margin-bottom: 40px;
+}
+
+input[type="text"],
+input[type="password"],
+button[type="submit"] {
+    width: 100%;
+    padding: 25px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 24px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
 }
