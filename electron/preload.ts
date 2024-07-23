@@ -22,3 +22,8 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
   // You can expose other APTs you need here.
   // ...
 })
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    ipcRenderer.send('exit-fullscreen');
+  }
+});
