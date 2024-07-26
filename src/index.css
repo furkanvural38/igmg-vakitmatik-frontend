@@ -20,12 +20,23 @@
 body {
   @apply m-0 flex items-center justify-center min-w-[320px] min-h-screen;
   background-image: url('../ressources/vakitmatik-background.png');
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
+html, body, #root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 
+.border-7 {
+  border-width: 7px;
+}
 
+.height-25{
+  height: 6rem;
+}
