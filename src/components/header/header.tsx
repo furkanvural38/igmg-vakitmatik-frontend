@@ -3,19 +3,19 @@ import React from 'react';
 function Header() {
     return (
         <header
-            className="flex items-center justify-between p-4 bg-transparent text-white border border-red-700 w-full">
+            className="flex items-center justify-between p-4 bg-transparent text-white border border-red-700 w-full h-60 mt-5">
             {/* Logo */}
-            <div className="flex-shrink-0 ml-10 mr-10">
-                <img src="../../../ressources/igmg-logo.png" alt="igmg-logo" className="h-12" />
+            <div className="flex-shrink-0 ml-10 mr-10 px-4">
+                <img src="../../../ressources/igmg-logo.png" alt="igmg-logo" className="h-24" />
             </div>
 
             {/* Überschrift */}
             <div className="flex-grow items-center justify-center border border-white border-7 rounded-2xl px-4 mr-10">
                 <div className="text-center">
-                    <h1 className="text-5xl py-2 rounded">
+                    <h1 className="text-8xl py-2 rounded">
                         IGMG HANNOVER ŞUBESİ
                     </h1>
-                    <h1 className="text-5xl py-2 rounded">
+                    <h1 className="text-8xl py-2 rounded">
                         AYASOFYA CAMİ
                     </h1>
                 </div>

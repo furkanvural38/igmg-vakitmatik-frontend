@@ -25,7 +25,7 @@ export const useAutoScroll = (
 
         const shouldScroll = () => {
             // Check if the content height is at least 1.5 times the container height
-            return content.scrollHeight > scrollContainer.clientHeight * 1.5;
+            return content.scrollHeight > scrollContainer.clientHeight * 1.25;
         };
 
         if (shouldScroll()) {

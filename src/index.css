@@ -40,3 +40,7 @@ html, body, #root {
 .height-25{
   height: 6rem;
 }
+
+.text-180xl {
+  font-size: 180px;
+}
