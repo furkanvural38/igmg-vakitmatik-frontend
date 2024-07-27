@@ -11,7 +11,6 @@ const PrayerTimeLeft = () => {
                 </div>
                 <span className="text-black text-8xl font-bold">04:34</span>
             </div>
-
             <div className="border-7 border-white rounded-2xl bg-transparent p-4 flex items-center justify-between">
                 <div className="flex flex-col mt-16">
                     <span className="text-black text-6xl text-center font-bold">İkindi</span>
@@ -47,8 +46,6 @@ const PrayerTimeLeft = () => {
                 </div>
                 <span className="text-black text-8xl font-bold">04:34</span>
             </div>
-
-
         </div>
     );
 };
