@@ -16,7 +16,7 @@ function Footer() {
             </div>
             <div className="flex-grow items-center justify-center border border-violet-900 rounded-2xl ml-10 mr-5 h-40 flex overflow-hidden" ref={scrollContainerRef}>
                 <div className="text-center">
-                    <p className="text-4xl py-2" ref={contentRef}>
+                    <p className="text-5xl py-2" ref={contentRef}>
                         {text}
                     </p>
                 </div>

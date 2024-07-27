@@ -15,8 +15,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 body {
   @apply m-0 flex items-center justify-center min-w-[320px] min-h-screen;
   background-image: url('../ressources/vakitmatik-background.png');
@@ -32,7 +30,6 @@ html, body, #root {
   padding: 0;
 }
 
-
 .border-7 {
   border-width: 7px;
 }
@@ -43,4 +40,12 @@ html, body, #root {
 
 .text-180xl {
   font-size: 180px;
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.letter-spacing {
+  letter-spacing: 12px;
 }
