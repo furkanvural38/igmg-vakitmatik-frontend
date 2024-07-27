@@ -16,19 +16,38 @@ export const useAutoScroll = (
         const startScrolling = () => {
             scrollInterval = setInterval(() => {
                 scrollAmount += 1;
-                if (scrollAmount >= content.scrollHeight) {
+                if (scrollAmount >= content.scrollHeight - scrollContainer.clientHeight) {
                     scrollAmount = 0;
                 }
                 scrollContainer.scrollTop = scrollAmount;
             }, 50);
         };
 
-        if (content.scrollHeight > scrollContainer.clientHeight) {
+        const shouldScroll = () => {
+            // Check if the content height is at least 1.5 times the container height
+            return content.scrollHeight > scrollContainer.clientHeight * 1.5;
+        };
+
+        if (shouldScroll()) {
             startScrolling();
         }
 
+        const resizeObserver = new ResizeObserver(() => {
+            if (scrollInterval) {
+                clearInterval(scrollInterval);
+                scrollAmount = 0;
+                scrollContainer.scrollTop = 0;
+            }
+            if (shouldScroll()) {
+                startScrolling();
+            }
+        });
+
+        resizeObserver.observe(content);
+
         return () => {
             if (scrollInterval) clearInterval(scrollInterval);
+            resizeObserver.disconnect();
         };
     }, [scrollContainerRef, contentRef]);
 };
