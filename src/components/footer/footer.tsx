@@ -15,7 +15,7 @@ function Footer() {
                 <img src={image} alt="igmg-logo" className="h-40" />
             </div>
             <div className="flex-grow items-center justify-center border border-violet-900 rounded-2xl ml-10 mr-5 h-40 flex overflow-hidden" ref={scrollContainerRef}>
-                <div className="text-center">
+                <div className="text-center pt-5">
                     <p className="text-5xl py-2" ref={contentRef}>
                         {text}
                     </p>
