@@ -4,11 +4,11 @@ import { PrayerTimesApiResponse } from "./types"; // Importiere die Typen
 
 export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> => {
     try {
-        const response = await fetch('https://api.example.com/daily-content'); // Ersetze dies durch die tatsächliche API-URL
+        const response = await fetch('http://localhost:8080/getPrayerTime'); // Ersetze dies durch die tatsächliche API-URL
         if (!response.ok) {
             throw new Error('Netzwerkantwort war nicht ok.');
         }
-        const data: PrayerTimesApiResponse = await response.json();
+        const data: PrayerTimesApiResponse = await response.json().then();
         return data;
     } catch (error) {
         console.error('Es gab ein Problem mit dem Fetch-Vorgang:', error);
