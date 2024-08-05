@@ -23,7 +23,7 @@ const PrayerTimeLeft = () => {
     const renderPrayerTime = (timeName: string, timeValue: string, title: string) => (
         <div className="border-7 border-white rounded-2xl bg-transparent p-4 flex items-center justify-between">
             <div className="flex flex-col mt-16">
-                <span className="text-black text-6xl text-center font-bold">{timeName}</span>
+                <span className="text-black text-7xl text-center font-bold">{timeName}</span>
                 <span className="text-black text-4xl text-center mt-5 font-bold" style={{ minWidth: '220px' }}>{title}</span>
             </div>
             <span className="text-black text-8xl font-bold">{timeValue}</span>
@@ -33,10 +33,10 @@ const PrayerTimeLeft = () => {
     return (
         <div className="w-full h-full grid grid-cols-2 grid-rows-3 gap-4">
             {renderPrayerTime('İmsak', prayerTimes.fajr, titles.fajr)}
-            {renderPrayerTime('Güneş', prayerTimes.sunrise, titles.shuruq)}
-            {renderPrayerTime('Öğle', prayerTimes.dhuhr, titles.dhuhr)}
             {renderPrayerTime('İkindi', prayerTimes.asr, titles.asr)}
+            {renderPrayerTime('Güneş', prayerTimes.sunrise, titles.shuruq)}
             {renderPrayerTime('Akşam', prayerTimes.maghrib, titles.maghrib)}
+            {renderPrayerTime('Öğle', prayerTimes.dhuhr, titles.dhuhr)}
             {renderPrayerTime('Yatsı', prayerTimes.isha, titles.ishaa)}
         </div>
     );

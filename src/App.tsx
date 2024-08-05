@@ -20,7 +20,7 @@ function App() {
                     <TimeRight />
                 </div>
             </main>
-            <footer className="px-4 mr-10 ml-10 mb-5 border-blue-700 border">
+            <footer className="px-4 mr-10 ml-10 mb-5">
                 <Footer />
             </footer>
         </div>

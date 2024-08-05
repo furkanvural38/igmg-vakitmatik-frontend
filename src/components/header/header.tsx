@@ -3,7 +3,7 @@ import React from 'react';
 function Header() {
     return (
         <header
-            className="flex items-center justify-between p-4 bg-transparent text-white border border-red-700 w-full h-60 mt-5">
+            className="flex items-center justify-between p-4 bg-transparent text-white w-full h-60 mt-5">
             {/* Logo */}
             <div className="flex-shrink-0 ml-10 mr-44 px-4">
                 <img src="../../../ressources/igmg-logo.png" alt="igmg-logo" className="h-24" />
