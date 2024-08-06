@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from '../src/components/header/header'; // Pfad zur Header-Komponente anpassen
 import Footer from '../src/components/footer/footer'; // Pfad zur Footer-Komponente anpassen
 import PrayerTimeLeft from '././components/center/prayerTimesGridLeft/prayerTimeLeft'; // Pfad zur PrayerTimeLeft-Komponente anpassen

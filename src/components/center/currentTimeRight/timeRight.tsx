@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import useCurrentTime from './useCurrentTime'; // Pfad zur useCurrentTime-Datei anpassen
 import { getDate } from '../getDate.tsx';
-import {PrayerTimes} from "../types.ts"; // Pfad zur dateUtils-Datei anpassen
+import {PrayerTimes} from "../types.ts";
+import {useEffect, useState} from "react"; // Pfad zur dateUtils-Datei anpassen
 
 const TimeRight = () => {
     const currentTime = useCurrentTime(); // Verwende den benutzerdefinierten Hook

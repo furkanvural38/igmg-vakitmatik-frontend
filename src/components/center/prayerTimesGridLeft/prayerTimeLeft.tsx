@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import { getDate } from '../getDate.tsx'; // Pfad zur getDate-Datei anpassen
 import { PrayerTimes } from '../types.ts'; // Pfad zu den Typen anpassen
-import useChangeTitle from './useChangeTitle.tsx'; // Pfad zur useChangeTitle-Datei anpassen
+import useChangeTitle from './useChangeTitle.tsx';
+import {useEffect, useState} from "react"; // Pfad zur useChangeTitle-Datei anpassen
 
 const PrayerTimeLeft = () => {
     const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);

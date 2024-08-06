@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
 import { useAutoScroll } from "./scrollFunction.tsx";
 import useDailyContent from "./useDailyContent.tsx";
+import {useRef} from "react";
 
 function Footer() {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
