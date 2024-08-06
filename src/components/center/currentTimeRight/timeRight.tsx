@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useCurrentTime from './useCurrentTime'; // Pfad zur useCurrentTime-Datei anpassen
-import { getDate } from './getDate'; // Pfad zur dateUtils-Datei anpassen
+import { getDate } from '../getDate.tsx';
+import {PrayerTimes} from "../types.ts"; // Pfad zur dateUtils-Datei anpassen
 
 const TimeRight = () => {
     const currentTime = useCurrentTime(); // Verwende den benutzerdefinierten Hook
@@ -8,8 +9,11 @@ const TimeRight = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const fetchedDates = await getDate();
-            setDates(fetchedDates);
+            const fetchedDates: PrayerTimes | null = await getDate();
+            if (fetchedDates) {
+                const { gregorianDateLong, hijriDateLong } = fetchedDates;
+                setDates({ hicriDate: hijriDateLong, miladiDate: gregorianDateLong });
+            }
         };
 
         fetchData();
@@ -22,8 +26,8 @@ const TimeRight = () => {
                 {currentTime}
             </span>
             {/* Datum */}
-            <div className="text-white text-7xl mt-4 text-center">
-                <p>{dates.miladiDate}</p>
+            <div className="text-white text-7xl mt-4 text-center font-bold">
+                <p className="mb-7">{dates.miladiDate}</p>
                 <p>{dates.hicriDate}</p>
             </div>
         </div>
