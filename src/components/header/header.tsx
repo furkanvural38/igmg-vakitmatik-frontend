@@ -5,7 +5,7 @@ function Header() {
             className="flex items-center justify-between p-4 bg-transparent text-white w-full h-60 mt-5">
             {/* Logo */}
             <div className="flex-shrink-0 ml-10 mr-44 px-4">
-                <img src="../../../ressources/igmg-logo.png" alt="igmg-logo" className="h-24" />
+                <img src="ressources/igmg-logo.png" alt="igmg-logo" className="h-24" />
             </div>
             {/* Überschrift */}
             <div className="flex-grow items-center justify-center border border-white border-7 rounded-2xl px-4 mr-10">
