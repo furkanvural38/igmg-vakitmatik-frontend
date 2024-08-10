@@ -33,15 +33,15 @@ const useDailyContent = () => {
     const items = [
         {
             text: `${data.data.verse} ${data.data.verseSource}`,
-            image: "public/ressources/ALLAH-image.png"
+            image: "/ressources/ALLAH-image.png"
         },
         {
             text: `${data.data.hadith} ${data.data.hadithSource}`,
-            image: "public/ressources/Muhammad-image.png"
+            image: "/ressources/Muhammad-image.png"
         },
         {
             text: `${data.data.pray} ${data.data.praySource}`,
-            image: "public/ressources/dua-image.png"
+            image: "/ressources/dua-image.png"
         }
     ];
 
