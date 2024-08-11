@@ -1,10 +1,10 @@
 // service.tsx
-/*
+
 import { PrayerTimesApiResponse } from "./types"; // Importiere die Typen
 
 export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> => {
     try {
-        const response = await fetch('http://localhost:8080/getPrayerTime'); // Ersetze dies durch die tatsächliche API-URL
+        const response = await fetch('http://localhost:8080/getPrayerTime');
         if (!response.ok) {
             throw new Error('Netzwerkantwort war nicht ok.');
         }
@@ -12,12 +12,12 @@ export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> =>
         return data;
     } catch (error) {
         console.error('Es gab ein Problem mit dem Fetch-Vorgang:', error);
-        throw error; // Optional: Du kannst eine spezifischere Fehlerbehandlung hinzufügen
+        throw error;
     }
 };
 
- */
 
+/*
 import { PrayerTimesApiResponse } from "./types"; // Importiere die Typen
 
 export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> => {
@@ -58,3 +58,4 @@ export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> =>
     }
 };
 
+ */

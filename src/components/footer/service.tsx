@@ -1,10 +1,10 @@
 // service.tsx
-/*
+
 import { ApiResponse } from "./types"; // Importiere die Typen
 
 export const fetchDailyContent = async (): Promise<ApiResponse> => {
     try {
-        const response = await fetch('http://localhost:8080/getIslamContent'); // Ersetze dies durch die tatsächliche API-URL
+        const response = await fetch('http://localhost:8080/getIslamContent');
         if (!response.ok) {
             throw new Error('Netzwerkantwort war nicht ok.');
         }
@@ -12,11 +12,11 @@ export const fetchDailyContent = async (): Promise<ApiResponse> => {
         return data;
     } catch (error) {
         console.error('Es gab ein Problem mit dem Fetch-Vorgang:', error);
-        throw error; // Optional: Du kannst eine spezifischere Fehlerbehandlung hinzufügen
+        throw error;
     }
 };
-*/
 
+/*
 import { ApiResponse } from "./types";
 
 export const fetchDailyContent = async (): Promise<ApiResponse> => {
@@ -41,3 +41,4 @@ export const fetchDailyContent = async (): Promise<ApiResponse> => {
         setTimeout(() => resolve(dummyData), 500);
     });
 };
+*/
