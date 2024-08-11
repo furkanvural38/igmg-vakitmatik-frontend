@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { fetchDailyContent } from "./service";
 import { ApiResponse } from "./types";
 
-import allahImage from '/ressources/ALLAH-image.png';
-import muhammadImage from '/ressources/Muhammad-image.png';
-import duaImage from '/ressources/dua-image.png';
+import allahImage from '../../assets/ressources/ALLAH-image.png';
+import muhammadImage from '../../assets/ressources/Muhammad-image.png';
+import duaImage from '../../assets/ressources/dua-image.png';
 
 const useDailyContent = () => {
     const [data, setData] = useState<ApiResponse | null>(null);

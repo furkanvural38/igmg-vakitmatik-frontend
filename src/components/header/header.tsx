@@ -1,4 +1,4 @@
-import igmgLogo from '/ressources/igmg-logo.png';
+import igmgLogo from '../../assets/ressources/igmg-logo.png';
 
 function Header() {
     return (
