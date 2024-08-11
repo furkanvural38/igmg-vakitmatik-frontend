@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { fetchDailyContent } from "./service";
 import { ApiResponse } from "./types";
 
+import allahImage from '../../assets/ressources/ALLAH-image.png';
+import muhammadImage from '../../assets/ressources/Muhammad-image.png';
+import duaImage from '../../assets/ressources/dua-image.png';
+
 const useDailyContent = () => {
     const [data, setData] = useState<ApiResponse | null>(null);
     const [index, setIndex] = useState<number>(0);
@@ -21,31 +25,30 @@ const useDailyContent = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setIndex((prevIndex) => (prevIndex + 1) % 3); // Wechselt alle 10 Sekunden
+            setIndex((prevIndex) => (prevIndex + 1) % 3);
         }, 10000);
 
         return () => clearInterval(interval);
     }, []);
 
-    if (!data) return { text: '', image: '' }; // Falls die Daten noch nicht geladen sind
+    if (!data) return { text: '', image: '' };
 
-    // Erstelle die Items-Array
+
     const items = [
         {
             text: `${data.data.verse} ${data.data.verseSource}`,
-            image: "/ressources/ALLAH-image.png"
+            image: allahImage
         },
         {
             text: `${data.data.hadith} ${data.data.hadithSource}`,
-            image: "/ressources/Muhammad-image.png"
+            image: muhammadImage
         },
         {
             text: `${data.data.pray} ${data.data.praySource}`,
-            image: "/ressources/dua-image.png"
+            image: duaImage
         }
     ];
 
-    // Gib das aktuelle Item basierend auf dem Index zurück
     return items[index];
 };
 

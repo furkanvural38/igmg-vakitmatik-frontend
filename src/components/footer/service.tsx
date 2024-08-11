@@ -1,5 +1,5 @@
 // service.tsx
-
+/*
 import { ApiResponse } from "./types"; // Importiere die Typen
 
 export const fetchDailyContent = async (): Promise<ApiResponse> => {
@@ -15,8 +15,8 @@ export const fetchDailyContent = async (): Promise<ApiResponse> => {
         throw error; // Optional: Du kannst eine spezifischere Fehlerbehandlung hinzufügen
     }
 };
+*/
 
-/*
 import { ApiResponse } from "./types";
 
 export const fetchDailyContent = async (): Promise<ApiResponse> => {
@@ -41,4 +41,3 @@ export const fetchDailyContent = async (): Promise<ApiResponse> => {
         setTimeout(() => resolve(dummyData), 500);
     });
 };
-*/
