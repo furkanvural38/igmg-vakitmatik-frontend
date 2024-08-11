@@ -19,7 +19,6 @@ const useDailyContent = () => {
                 console.error('Fehler beim Laden der Daten:', error);
             }
         };
-
         loadData();
     }, []);
 
