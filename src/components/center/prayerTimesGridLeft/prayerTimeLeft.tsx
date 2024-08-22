@@ -23,10 +23,10 @@ const PrayerTimeLeft = () => {
     const renderPrayerTime = (timeName: string, timeValue: string, title: string) => (
         <div className="border-7 border-white rounded-2xl bg-transparent p-4 flex items-center justify-between">
             <div className="flex flex-col mt-16">
-                <span className="text-black text-7xl text-center font-bold">{timeName}</span>
-                <span className="text-black text-4xl text-center mt-5 font-bold" style={{ minWidth: '220px' }}>{title}</span>
+                <span className="text-black text-8xl text-center font-bold">{timeName}</span>
+                <span className="text-black text-6xl text-center mt-5 font-bold" style={{ minWidth: '375px' }}>{title}</span>
             </div>
-            <span className="text-black text-8xl font-bold">{timeValue}</span>
+            <span className="text-black text-12xl font-bold">{timeValue}</span>
         </div>
     );
 
