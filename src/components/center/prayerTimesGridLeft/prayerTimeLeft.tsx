@@ -95,14 +95,19 @@ const PrayerTimeLeft = () => {
                 style={isBlinking ? {} : containerStyle}
             >
                 <div className="flex flex-col mt-16">
-                    <span className={`text-7xl text-center font-bold ${isBlinking ? '' : textClassName}`} style={isBlinking ? {} : textStyle}>
+                    <span className={`text-7xl text-center font-bold ${isBlinking ? '' : textClassName}`}
+                          style={isBlinking ? {} : textStyle}>
                         {timeName}
                     </span>
-                    <span className={`text-4xl text-center mt-5 font-bold ${isBlinking ? '' : textClassName}`} style={isBlinking ? {} : textStyle}>
-                        {title}
-                    </span>
+                    <span
+                        className={`text-4xl text-center mt-5 font-bold ${isBlinking ? '' : textClassName}`}
+                        style={{...textStyle, minWidth: '375px', ...(isBlinking ? {} : textStyle)}}
+                    >
+                    {title}
+                </span>
                 </div>
-                <span className={`text-8xl font-bold ${isBlinking ? '' : timeClassName}`} style={isBlinking ? {} : timeStyle}>
+                <span className={`text-8xl font-bold ${isBlinking ? '' : timeClassName}`}
+                      style={isBlinking ? {} : timeStyle}>
                     {timeValue}
                 </span>
             </div>
