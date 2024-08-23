@@ -33,7 +33,7 @@ export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> =>
                     dhuhr: "13:33",
                     asr: "17:46",
                     maghrib: "21:50",
-                    isha: "23:49",
+                    isha: "23:51",
                     astronomicalSunset: "21:21",
                     astronomicalSunrise: "05:34",
                     hijriDateShort: "21.1.1446",

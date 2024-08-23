@@ -37,7 +37,7 @@ const PrayerTimeLeft = () => {
                 setCurrentPrayerTime(currentTime);
                 handleBlinking(prayerTimes, currentTime);
             }
-        }, 60000); // Aktualisiere alle 60 Sekunden
+        }, 60000);
 
         return () => {
             clearInterval(intervalId);
