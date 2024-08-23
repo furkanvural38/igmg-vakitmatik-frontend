@@ -10,7 +10,7 @@ interface StyleResult {
 export const applyCurrentPrayerStyles = (isCurrent: boolean): StyleResult => {
     if (isCurrent) {
         return {
-            containerClassName: 'bg-white bg-opacity-90 border-green-600',
+            containerClassName: 'bg-white bg-opacity-90 border-white',
             containerStyle: { backgroundColor: 'rgba(255, 255, 255, 0.9)' },
             textClassName: 'text-green-600',
             textStyle: { color: '#008B00' },
