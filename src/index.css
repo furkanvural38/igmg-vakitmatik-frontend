@@ -49,3 +49,22 @@ html, body, #root {
 .letter-spacing {
   letter-spacing: 12px;
 }
+
+.blink {
+  animation: blinkAnimation 2s infinite;
+}
+
+@keyframes blinkAnimation {
+  0% {
+    background-color: #8b0000;
+    color: white;
+  }
+  50% {
+    background-color: white;
+    color: #8b0000;
+  }
+  100% {
+    background-color: #8b0000;
+    color: white;
+  }
+}
