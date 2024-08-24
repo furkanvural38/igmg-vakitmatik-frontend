@@ -18,6 +18,7 @@ export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> =>
 
  */
 
+
 import { PrayerTimesApiResponse } from "./types"; // Importiere die Typen
 
 export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> => {
@@ -31,8 +32,8 @@ export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> =>
                     sunrise: "05:27",
                     dhuhr: "13:33",
                     asr: "17:46",
-                    maghrib: "21:28",
-                    isha: "22:57",
+                    maghrib: "21:50",
+                    isha: "23:51",
                     astronomicalSunset: "21:21",
                     astronomicalSunrise: "05:34",
                     hijriDateShort: "21.1.1446",
