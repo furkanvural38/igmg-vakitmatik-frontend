@@ -101,8 +101,7 @@ const PrayerTimeLeft = () => {
                         {timeName}
                     </span>
                     <span
-                        className={`text-6xl text-center mt-5 font-bold ${isBlinking ? '' : textClassName}`}
-                        style={{...textStyle, minWidth: '375px', ...(isBlinking ? {} : textStyle)}}
+                        className={`text-6xl text-center mt-5 font-bold min-w-375 ${isBlinking ? '' : textClassName}`}
                     >
                     {title}
                 </span>

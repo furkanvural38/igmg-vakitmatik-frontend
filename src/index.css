@@ -45,6 +45,10 @@ html, body, #root {
 .text-12xl {
   font-size: 140px;
 }
+.min-w-375 {
+  min-width: 375px;
+}
+
 
 .font-bebas {
   font-family: 'Bebas Neue', sans-serif;

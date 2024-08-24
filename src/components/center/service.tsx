@@ -30,7 +30,7 @@ export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> =>
                     shapeMoonUrl: "https://awqatsalah.diyanet.gov.tr/images/d7.gif",
                     fajr: "03:47",
                     sunrise: "05:27",
-                    dhuhr: "13:33",
+                    dhuhr: "09:20",
                     asr: "17:46",
                     maghrib: "21:50",
                     isha: "23:51",
