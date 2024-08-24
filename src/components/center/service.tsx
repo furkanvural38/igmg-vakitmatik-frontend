@@ -16,8 +16,8 @@ export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> =>
     }
 };
 
-
  */
+
 
 import { PrayerTimesApiResponse } from "./types"; // Importiere die Typen
 

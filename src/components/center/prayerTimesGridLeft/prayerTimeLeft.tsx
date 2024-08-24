@@ -84,6 +84,7 @@ const PrayerTimeLeft = () => {
         return <div>Loading...</div>;
     }
 
+
     const renderPrayerTime = (timeName: string, timeValue: string, title: string, prayerKey: string) => {
         const { containerClassName, containerStyle, textClassName, textStyle, timeClassName, timeStyle } = applyCurrentPrayerStyles(currentPrayerTime === prayerKey);
 
@@ -95,24 +96,25 @@ const PrayerTimeLeft = () => {
                 style={isBlinking ? {} : containerStyle}
             >
                 <div className="flex flex-col mt-16">
-                    <span className={`text-7xl text-center font-bold ${isBlinking ? '' : textClassName}`}
+                    <span className={`text-8xl text-center font-bold ${isBlinking ? '' : textClassName}`}
                           style={isBlinking ? {} : textStyle}>
                         {timeName}
                     </span>
                     <span
-                        className={`text-4xl text-center mt-5 font-bold ${isBlinking ? '' : textClassName}`}
+                        className={`text-6xl text-center mt-5 font-bold ${isBlinking ? '' : textClassName}`}
                         style={{...textStyle, minWidth: '375px', ...(isBlinking ? {} : textStyle)}}
                     >
                     {title}
                 </span>
                 </div>
-                <span className={`text-8xl font-bold ${isBlinking ? '' : timeClassName}`}
+                <span className={`text-12xl font-bold ${isBlinking ? '' : timeClassName}`}
                       style={isBlinking ? {} : timeStyle}>
                     {timeValue}
                 </span>
             </div>
         );
     };
+
 
     return (
         <div className="w-full h-full grid grid-cols-2 grid-rows-3 gap-4">

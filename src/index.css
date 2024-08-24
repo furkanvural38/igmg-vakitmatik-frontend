@@ -39,7 +39,11 @@ html, body, #root {
 }
 
 .text-180xl {
-  font-size: 230px;
+  font-size: 300px;
+}
+
+.text-12xl {
+  font-size: 140px;
 }
 
 .font-bebas {
