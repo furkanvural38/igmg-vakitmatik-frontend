@@ -5,7 +5,7 @@ import TimeRight from '././components/center/currentTimeRight/timeRight'; // Pfa
 
 function App() {
     return (
-        <div className="flex flex-col min-h-screen border-red-700 border">
+        <div className="flex flex-col min-h-screen">
             <div className="w-full">
                 <Header />
             </div>
