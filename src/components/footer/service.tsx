@@ -25,12 +25,12 @@ export const fetchDailyContent = async (): Promise<ApiResponse> => {
         data: {
             id: 0,
             dayOfYear: 209,
-            verse: "“Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet..” ",
-            verseSource: "(İsrâ, 17/88)",
-            hadith: "\"Lorem ipsum dolor sit amet, consetetur sadipscing elitr.\"",
-            hadithSource: "(İbn Şeybe, Musannef, \"İman ve Rüya\",6)",
-            pray: "\"Lorem ipsum dolor sit amet, consetetur sadipscing elitr\"",
-            praySource: "(İbn-i Mâce, \"Taharet\", 10)"
+            verse: "\"Göğün, erimiş maden gibi ve dağların atılmış renkli yün gibi olacağı günü hatırla.(O gün) hiçbir samimi dost, dostunu sormaz.\"",
+            verseSource: "(Meâric, 70/8-10)",
+            hadith: "\"Ramazandan sonra oruçların en faziletlisi, Allah'ın ayı olan Muharrem ayında tutulan oruçtur. Farz namazlardan sonra en faziletli namaz da gece kılınan namzdır.\"",
+            hadithSource: "(Müslim, \"Sıyâm\", 202)",
+            pray: "\"Ey görünen ve görünmeyeni bilen, gökleri ve yeri yaratan, her şeyin Rabbi ve sahibi olan Allah’ım! Ben tanıklık ederim ki Senden başka ilâh yoktur. \nNefsimin şerrinden, şeytanın ve ortaklarının şerrinden sana sığınırım.\"",
+            praySource: "(İbn Hıbbân, \"Ed’ıye\", No: 962; İbn Ebî Şeybe, \"Dua\", 22, No: 29265)"
         },
         success: true,
         message: null
