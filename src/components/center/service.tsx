@@ -1,5 +1,5 @@
 // service.tsx
-/*
+
 import { PrayerTimesApiResponse } from "./types"; // Importiere die Typen
 
 export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> => {
@@ -16,7 +16,7 @@ export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> =>
     }
 };
 
- */
+/*
 
 
 import { PrayerTimesApiResponse } from "./types"; // Importiere die Typen
@@ -58,4 +58,4 @@ export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> =>
         throw error; // Optional: Du kannst eine spezifischere Fehlerbehandlung hinzufügen
     }
 };
-
+ */
