@@ -1,11 +1,35 @@
 import useCurrentTime from './useCurrentTime'; // Pfad zur useCurrentTime-Datei anpassen
 import { getDate } from '../getDate.tsx';
 import {PrayerTimes} from "../types.ts";
-import {useEffect, useState} from "react"; // Pfad zur dateUtils-Datei anpassen
+import {useEffect, useState} from "react";
 
 const TimeRight = () => {
     const currentTime = useCurrentTime(); // Verwende den benutzerdefinierten Hook
     const [dates, setDates] = useState({ hicriDate: '', miladiDate: '' }); // Hole die Datumsinformationen
+
+
+    const loadData = async () => {
+        try {
+            const fetchedDates = await getDate();
+            if (JSON.stringify(fetchedDates) !== JSON.stringify(dates)) {
+                const { gregorianDateLong, hijriDateLong } = fetchedDates;
+                setDates({ hicriDate: hijriDateLong, miladiDate: gregorianDateLong });
+            }
+        } catch (error) {
+            console.error('Fehler beim Laden der Daten:', error);
+        }
+    };
+
+    useEffect(() => {
+        loadData();
+
+        const interval = setInterval(() => {
+            loadData();
+        }, 60000);
+
+        return () => clearInterval(interval);
+    }, [dates]);
+
 
     useEffect(() => {
         const fetchData = async () => {
