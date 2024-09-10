@@ -10,17 +10,29 @@ const useDailyContent = () => {
     const [data, setData] = useState<DailyContentApiResponse | null>(null);
     const [index, setIndex] = useState<number>(0);
 
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                const result = await fetchDailyContent();
-                setData(result); // Setze die gesamte API-Antwort
-            } catch (error) {
-                console.error('Fehler beim Laden der Daten:', error);
+    // Funktion zum Laden der Daten
+    const loadData = async () => {
+        try {
+            const result = await fetchDailyContent();
+            if (JSON.stringify(result) !== JSON.stringify(data)) {
+                setData(result);
             }
-        };
+        } catch (error) {
+            console.error('Fehler beim Laden der Daten:', error);
+        }
+    };
+
+    // Datenabruf alle 60 Sekunden
+    useEffect(() => {
         loadData();
-    }, []);
+
+        const interval = setInterval(() => {
+            loadData();
+        }, 60000);
+
+        return () => clearInterval(interval);
+    }, [data]);
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -31,7 +43,6 @@ const useDailyContent = () => {
     }, []);
 
     if (!data) return { text: '', image: '' };
-
 
     const items = [
         {
