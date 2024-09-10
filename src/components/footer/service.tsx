@@ -1,14 +1,14 @@
 // service.tsx
 
-import { ApiResponse } from "./types"; // Importiere die Typen
+import { DailyContentApiResponse } from "./types"; // Importiere die Typen
 
-export const fetchDailyContent = async (): Promise<ApiResponse> => {
+export const fetchDailyContent = async (): Promise<DailyContentApiResponse> => {
     try {
         const response = await fetch('http://localhost:8080/getIslamContent');
         if (!response.ok) {
             throw new Error('Netzwerkantwort war nicht ok.');
         }
-        const data: ApiResponse = await response.json();
+        const data: DailyContentApiResponse = await response.json();
         return data;
     } catch (error) {
         console.error('Es gab ein Problem mit dem Fetch-Vorgang:', error);

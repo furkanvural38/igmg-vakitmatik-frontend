@@ -10,7 +10,7 @@ export interface DailyContentData {
     praySource: string;
 }
 
-export interface ApiResponse {
+export interface DailyContentApiResponse {
     data: DailyContentData;
     success: boolean;
     message: string | null;

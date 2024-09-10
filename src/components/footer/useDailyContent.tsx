@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { fetchDailyContent } from "./service";
-import { ApiResponse } from "./types";
+import { DailyContentApiResponse } from "./types";
 
 import allahImage from '../../assets/ressources/ALLAH-image.png';
 import muhammadImage from '../../assets/ressources/Muhammad-image.png';
 import duaImage from '../../assets/ressources/dua-image.png';
 
 const useDailyContent = () => {
-    const [data, setData] = useState<ApiResponse | null>(null);
+    const [data, setData] = useState<DailyContentApiResponse | null>(null);
     const [index, setIndex] = useState<number>(0);
 
     useEffect(() => {
