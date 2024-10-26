@@ -50,7 +50,7 @@ const TimeRight = () => {
                 {currentTime}
             </span>
             {/* Datum */}
-            <div className="text-white text-8xl mt-4 text-center font-bold">
+            <div className="text-white text-9xl mt-4 text-center font-bold">
                 <p className="mb-7">{dates.miladiDate}</p>
                 <p>{dates.hicriDate}</p>
             </div>

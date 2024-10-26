@@ -40,12 +40,21 @@ html, body, #root {
 }
 
 .text-180xl {
-  font-size: 300px;
+  font-size: 350px;
 }
 
 .text-12xl {
   font-size: 140px;
 }
+
+.text-10xl {
+  font-size: 110px;
+}
+
+.text-16xl {
+  font-size: 190px;
+}
+
 .min-w-375 {
   min-width: 375px;
 }
@@ -85,7 +94,6 @@ html, body, #root {
 @keyframes hueRotate {
   0% { filter: hue-rotate(25deg) grayscale(0); }
   25% { filter: hue-rotate(-25deg) grayscale(0); }
-  50% { filter: hue-rotate(25deg) grayscale(1); }
   75% { filter: hue-rotate(-25deg) grayscale(0); }
   100% { filter: hue-rotate(25deg) grayscale(0); }
 }
@@ -96,8 +104,8 @@ html, body, #root {
 }
 
 @keyframes move {
-  from {  transform: rotate(0deg) translateX(10px) rotate(0deg); }
-  to   {  transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+  from {  transform: rotate(0deg) translateX(20px) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(20px) rotate(-360deg); }
 }
 
 .background {
