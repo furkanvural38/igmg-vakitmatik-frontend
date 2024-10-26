@@ -18,7 +18,6 @@
 
 body {
   @apply m-0 flex items-center justify-center min-w-[320px] min-h-screen;
-  background-image: url('../ressources/vakitmatik-background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -29,6 +28,7 @@ html, body, #root {
   width: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .border-7 {
@@ -76,4 +76,30 @@ html, body, #root {
     background-color: #8b0000;
     color: white;
   }
+}
+
+.preventBurnInHue {
+  animation: hueRotate 250s linear infinite;
+}
+
+@keyframes hueRotate {
+  0% { filter: hue-rotate(25deg) grayscale(0); }
+  25% { filter: hue-rotate(-25deg) grayscale(0); }
+  50% { filter: hue-rotate(25deg) grayscale(1); }
+  75% { filter: hue-rotate(-25deg) grayscale(0); }
+  100% { filter: hue-rotate(25deg) grayscale(0); }
+}
+
+.preventBurnInMove {
+  animation: move 100s forwards infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes move {
+  from {  transform: rotate(0deg) translateX(10px) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+.background {
+  background-color: rgb(0, 51, 25);
 }
