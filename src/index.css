@@ -49,6 +49,7 @@ html, body, #root {
 
 .text-10xl {
   font-size: 110px;
+  line-height: 125px;
 }
 
 .text-16xl {
