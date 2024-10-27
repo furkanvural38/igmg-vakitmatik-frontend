@@ -13,9 +13,9 @@ export const applyCurrentPrayerStyles = (isCurrent: boolean): StyleResult => {
             containerClassName: 'bg-white bg-opacity-90 border-white',
             containerStyle: { backgroundColor: 'rgba(255, 255, 255, 0.9)' },
             textClassName: 'text-green-600',
-            textStyle: { color: '#008B00' },
+            textStyle: { color: '#003300' },
             timeClassName: 'text-green-600',
-            timeStyle: { color: '#008B00' },
+            timeStyle: { color: '#003300' },
         };
     }
 
