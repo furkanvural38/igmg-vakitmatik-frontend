@@ -3,21 +3,16 @@ import igmgLogo from '../../assets/ressources/igmg-logo.png';
 function Header() {
     return (
         <header
-            className="flex items-center justify-between pl-36 pr-4 bg-transparent text-white w-full h-96 mt-5">
+            className="flex mt-10 mr-10 ml-10 justify-between items-center bg-transparent">
             {/* Logo */}
-            <div className="flex-shrink-0 ml-10 mr-44 px-4">
-                <img src={igmgLogo} alt="igmg-logo" className="h-36" />
+            <div className="flex ml-10 px-4">
+                <img src={igmgLogo} alt="igmg-logo" className="h-40" />
             </div>
             {/* Überschrift */}
-            <div className="flex-grow items-center justify-center border border-white border-7 rounded-2xl px-4 mr-10 h-96 overflow-hidden">
-                <div className="text-center">
-                    <h1 className="text-12xl rounded font-bebas font-bold letter-spacing">
-                        IGMG HANNOVER ŞUBESİ
-                    </h1>
-                    <h1 className="text-12xl rounded font-bebas font-bold letter-spacing">
-                        AYASOFYA CAMİ
-                    </h1>
-                </div>
+            <div className="border border-white border-7 rounded-2xl">
+                <h1 className="text-12xl p-8 pr-96 pl-96 rounded font-bebas font-bold letter-spacing">
+                    IGMG HANNOVER ŞUBESİ AYASOFYA CAMİ
+                </h1>
             </div>
         </header>
     );

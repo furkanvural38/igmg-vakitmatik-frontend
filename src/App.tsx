@@ -6,7 +6,7 @@ import TimeRight from '././components/center/currentTimeRight/timeRight'; // Pfa
 function App() {
     return (
         <div className="flex flex-col min-h-screen background preventBurnInHue scrollbar-hide">
-            <div className="w-full preventBurnInMove">
+            <div className="preventBurnInMove">
                 <Header />
             </div>
             <main className="flex-grow flex preventBurnInMove">
