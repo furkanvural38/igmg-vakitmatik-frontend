@@ -10,7 +10,7 @@ function Footer() {
     useAutoScroll(scrollContainerRef, contentRef);
 
     return (
-        <footer className="flex items-center justify-between bg-transparent text-white border-7 border-white w-full rounded-2xl h-96">
+        <footer className="flex items-center justify-between bg-transparent text-white border-7 border-white rounded-2xl h-400 px-4 py-2 mx-10">
             <div className="flex-shrink-0 ml-2">
                 <img src={image} alt="igmg-logo" className="h-80"/>
             </div>

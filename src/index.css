@@ -59,6 +59,9 @@ html, body, #root {
 .min-w-375 {
   min-width: 375px;
 }
+.h-400 {
+  height: 450px;
+}
 
 
 .font-bebas {

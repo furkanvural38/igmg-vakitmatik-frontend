@@ -9,17 +9,17 @@ function App() {
             <div className="preventBurnInMove">
                 <Header />
             </div>
-            <main className="flex-grow flex preventBurnInMove">
+            <main className="flex items-center justify-center preventBurnInMove">
                 {/* Links: PrayerTimeLeft */}
-                <div className="flex-1 p-4 px-4 ml-10">
+                <div className="">
                     <PrayerTimeLeft />
                 </div>
                 {/* Rechts: TimeRight */}
-                <div className="flex-1 p-4 px-4 mr-10">
+                <div className="">
                     <TimeRight />
                 </div>
             </main>
-            <footer className="px-4 mr-10 ml-10 mb-5 preventBurnInMove">
+            <footer className="preventBurnInMove">
                 <Footer />
             </footer>
         </div>
