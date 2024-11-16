@@ -17,7 +17,6 @@
 }
 
 body {
-  @apply m-0 flex items-center justify-center min-w-[320px] min-h-screen;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -60,7 +59,7 @@ html, body, #root {
   min-width: 375px;
 }
 .h-400 {
-  height: 450px;
+  height: 500px;
 }
 
 
@@ -103,7 +102,7 @@ html, body, #root {
 }
 
 .preventBurnInMove {
-  animation: move 100s forwards infinite;
+  animation: move 10s forwards infinite;
   animation-timing-function: linear;
 }
 
