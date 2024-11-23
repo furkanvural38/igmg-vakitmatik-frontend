@@ -27,7 +27,7 @@ const useDailyContent = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % 3);
-        }, 30000);
+        }, 5000);
 
         return () => clearInterval(interval);
     }, []);

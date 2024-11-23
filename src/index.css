@@ -43,7 +43,7 @@ html, body, #root {
 }
 
 .text-12xl {
-  font-size: 140px;
+  font-size: 200px;
 }
 
 .text-10xl {
@@ -70,9 +70,18 @@ html, body, #root {
 .min-w-375 {
   min-width: 375px;
 }
-.h-400 {
+.h-800 {
+  height: 800px;
+}
+
+.h-600 {
+  height: 600px;
+}
+
+.h-500 {
   height: 500px;
 }
+
 
 
 .font-bebas {
