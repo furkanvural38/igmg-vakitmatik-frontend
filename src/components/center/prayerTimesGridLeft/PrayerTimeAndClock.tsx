@@ -3,20 +3,23 @@ import { PrayerTimes, PrayerTimesApiResponse } from '../types'; // Importiere di
 import { getCurrentPrayerTime } from '../currentPrayerTime/getCurrentPrayerTime'; // Importiere die Methode
 import { applyCurrentPrayerStyles } from '../helperClass/applyCurrentPrayerStyles';
 import useChangeTitle from './useChangeTitle';
-import {fetchDailyPrayerTime} from "../service.tsx";
+import { fetchDailyPrayerTime } from "../service.tsx";
+import useCurrentTime from "../currentTimeRight/useCurrentTime.tsx";
 
-const PrayerTimeLeft = () => {
+
+const PrayerTimeAndClock = () => {
     const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
     const [currentPrayerTime, setCurrentPrayerTime] = useState<string | null>(null);
     const titles = useChangeTitle();
+    const currentTime = useCurrentTime();// Aktuelle Uhrzeit aus dem benutzerdefinierten Hook
 
-    // Daten laden
+    // Lade Gebetszeiten-Daten
     useEffect(() => {
         const loadData = async () => {
             try {
                 const response: PrayerTimesApiResponse = await fetchDailyPrayerTime();
                 if (response.success && response.data.length > 0) {
-                    setPrayerTimes(response.data[0]);
+                    setPrayerTimes(response.data[0]); // Setze die Gebetszeiten
                 } else {
                     console.error('Fehler beim Abrufen der Gebetszeiten:', response.message);
                 }
@@ -28,6 +31,7 @@ const PrayerTimeLeft = () => {
         loadData();
     }, []);
 
+    // Überwache und aktualisiere die aktuelle Gebetszeit
     useEffect(() => {
         const checkCurrentPrayerTime = () => {
             if (prayerTimes) {
@@ -41,18 +45,18 @@ const PrayerTimeLeft = () => {
         return () => clearInterval(intervalId);
     }, [prayerTimes]);
 
-
     if (!prayerTimes) {
         return <div>Loading...</div>;
     }
 
+    // Render-Funktion für Gebetszeiten
     const renderPrayerTime = (timeName: string, timeValue: string, title: string, prayerKey: string) => {
         const { containerClassName, containerStyle, textClassName, textStyle, timeClassName, timeStyle } =
             applyCurrentPrayerStyles(currentPrayerTime === prayerKey);
 
         return (
             <div
-                className={`border-7 rounded-2xl p-4 flex items-center justify-between ${containerClassName}`}
+                className={`border-7 rounded-center p-4 flex items-center justify-between ${containerClassName}`}
                 style={containerStyle}
             >
                 <div className="flex flex-col mt-16">
@@ -73,16 +77,37 @@ const PrayerTimeLeft = () => {
         );
     };
 
+    // Hauptrendering
     return (
-        <div className="w-full h-full grid grid-cols-2 grid-rows-3 gap-4">
-            {renderPrayerTime('İmsak', prayerTimes.fajr, titles.fajr, 'fajr')}
-            {renderPrayerTime('İkindi', prayerTimes.asr, titles.asr, 'asr')}
-            {renderPrayerTime('Güneş', prayerTimes.sunrise, titles.shuruq, 'sunrise')}
-            {renderPrayerTime('Akşam', prayerTimes.maghrib, titles.maghrib, 'maghrib')}
-            {renderPrayerTime('Öğle', prayerTimes.dhuhr, titles.dhuhr, 'dhuhr')}
-            {renderPrayerTime('Yatsı', prayerTimes.isha, titles.ishaa, 'isha')}
-        </div>
+        <main className="flex items-center justify-center ml-8 mr-8">
+            {/* Linke Seite: Gebetszeiten */}
+            <div className="flex-1 w-1/2 border-white pr-4">
+                <div className="w-full h-full grid grid-cols-2 grid-rows-3 gap-4">
+                    {renderPrayerTime('İmsak', prayerTimes.fajr, titles.fajr, 'fajr')}
+                    {renderPrayerTime('İkindi', prayerTimes.asr, titles.asr, 'asr')}
+                    {renderPrayerTime('Güneş', prayerTimes.sunrise, titles.shuruq, 'sunrise')}
+                    {renderPrayerTime('Akşam', prayerTimes.maghrib, titles.maghrib, 'maghrib')}
+                    {renderPrayerTime('Öğle', prayerTimes.dhuhr, titles.dhuhr, 'dhuhr')}
+                    {renderPrayerTime('Yatsı', prayerTimes.isha, titles.ishaa, 'isha')}
+                </div>
+            </div>
+
+            {/* Rechte Seite: Uhrzeit und Datum */}
+            <div className="flex-1 w-1/2 pl-4">
+                <div className="flex flex-col items-center justify-center w-full h-full bg-transparent border-7 border-white rounded-center p-4">
+                    {/* Aktuelle Uhrzeit */}
+                    <span className="text-white text-180xl font-bold">
+                        {currentTime}
+                    </span>
+                    {/* Datum */}
+                    <div className="text-white text-9xl mt-4 text-center font-bold">
+                        <p className="mb-7">{prayerTimes.gregorianDateLong}</p>
+                        <p>{prayerTimes.hijriDateLong}</p>
+                    </div>
+                </div>
+            </div>
+        </main>
     );
 };
 
-export default PrayerTimeLeft;
+export default PrayerTimeAndClock;

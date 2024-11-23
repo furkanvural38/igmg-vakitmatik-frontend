@@ -1,7 +1,7 @@
-import Header from '../src/components/header/header'; // Pfad zur Header-Komponente anpassen
-import Footer from '../src/components/footer/footer'; // Pfad zur Footer-Komponente anpassen
-import PrayerTimeLeft from '././components/center/prayerTimesGridLeft/prayerTimeLeft'; // Pfad zur PrayerTimeLeft-Komponente anpassen
-import TimeRight from '././components/center/currentTimeRight/timeRight'; // Pfad zur TimeRight-Komponente anpassen
+import Header from '../src/components/header/header';
+import Footer from '../src/components/footer/footer';
+
+import PrayerTimeAndClock from "./components/center/prayerTimesGridLeft/PrayerTimeAndClock.tsx";
 
 function App() {
     return (
@@ -9,14 +9,9 @@ function App() {
             <div className="preventBurnInMove">
                 <Header />
             </div>
-            <main className="flex items-center justify-center preventBurnInMove">
-                {/* Links: PrayerTimeLeft */}
+            <main className="preventBurnInMove">
                 <div className="">
-                    <PrayerTimeLeft />
-                </div>
-                {/* Rechts: TimeRight */}
-                <div className="">
-                    <TimeRight />
+                    <PrayerTimeAndClock />
                 </div>
             </main>
             <footer className="preventBurnInMove">
