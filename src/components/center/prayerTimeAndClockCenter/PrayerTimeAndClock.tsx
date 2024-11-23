@@ -11,9 +11,21 @@ const PrayerTimeAndClock = () => {
     const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
     const [currentPrayerTime, setCurrentPrayerTime] = useState<string | null>(null);
     const titles = useChangeTitle();
-    const currentTime = useCurrentTime();// Aktuelle Uhrzeit aus dem benutzerdefinierten Hook
+    const currentTime = useCurrentTime();
 
-    // Lade Gebetszeiten-Daten
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+
+            if (hours === 0 && minutes === 2) {
+                window.location.reload();
+            }
+        }, 60000);
+        return () => clearInterval(interval);
+    }, []);
+
     useEffect(() => {
         const loadData = async () => {
             try {
@@ -31,12 +43,10 @@ const PrayerTimeAndClock = () => {
         loadData();
     }, []);
 
-    // Überwache und aktualisiere die aktuelle Gebetszeit
     useEffect(() => {
         const checkCurrentPrayerTime = () => {
             if (prayerTimes) {
                 const currentTime = getCurrentPrayerTime(prayerTimes);
-                console.log(currentTime + " Das ist die Zeit aktuell");
                 setCurrentPrayerTime(currentTime);
             }
         };
@@ -49,7 +59,6 @@ const PrayerTimeAndClock = () => {
         return <div>Loading...</div>;
     }
 
-    // Render-Funktion für Gebetszeiten
     const renderPrayerTime = (timeName: string, timeValue: string, title: string, prayerKey: string) => {
         const { containerClassName, containerStyle, textClassName, textStyle, timeClassName, timeStyle } =
             applyCurrentPrayerStyles(currentPrayerTime === prayerKey);
