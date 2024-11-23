@@ -1,7 +1,7 @@
 import Header from '../src/components/header/header';
 import Footer from '../src/components/footer/footer';
 
-import PrayerTimeAndClock from "./components/center/prayerTimesGridLeft/PrayerTimeAndClock.tsx";
+import PrayerTimeAndClock from "./components/center/prayerTimeAndClockCenter/PrayerTimeAndClock.tsx";
 
 function App() {
     return (
