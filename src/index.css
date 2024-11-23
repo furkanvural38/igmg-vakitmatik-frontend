@@ -17,7 +17,6 @@
 }
 
 body {
-  @apply m-0 flex items-center justify-center min-w-[320px] min-h-screen;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -44,7 +43,11 @@ html, body, #root {
 }
 
 .text-12xl {
-  font-size: 140px;
+  font-size: 200px;
+}
+
+.text-header {
+  font-size: 300px;
 }
 
 .text-10xl {
@@ -52,12 +55,45 @@ html, body, #root {
   line-height: 125px;
 }
 
+.rounded-footer {
+  border-radius: 8rem/* 24px */;
+}
+
+.rounded-header {
+  border-radius: 4rem/* 24px */;
+}
+
+.rounded-center {
+  border-radius: 4rem/* 24px */;
+}
+
 .text-16xl {
   font-size: 190px;
 }
 
-.min-w-375 {
-  min-width: 375px;
+.text-32xl {
+  font-size: 300px;
+}
+
+.min-w-800 {
+  min-width: 800px;
+}
+.h-800 {
+  height: 800px;
+}
+
+.h-600 {
+  height: 600px;
+}
+
+.h-500 {
+  height: 500px;
+}
+
+.separator {
+  width: 1px; /* Breite der Linie */
+  background-color: white; /* Farbe der Linie */
+  height: 80%; /* Höhe der Linie (füllt den Container aus) */
 }
 
 

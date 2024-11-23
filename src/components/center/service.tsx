@@ -8,7 +8,7 @@ export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> =>
         if (!response.ok) {
             throw new Error('Netzwerkantwort war nicht ok.');
         }
-        const data: PrayerTimesApiResponse = await response.json().then();
+        const data: PrayerTimesApiResponse = await response.json();
         return data;
     } catch (error) {
         console.error('Es gab ein Problem mit dem Fetch-Vorgang:', error);

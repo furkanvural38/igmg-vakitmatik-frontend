@@ -11,33 +11,23 @@ const useDailyContent = () => {
     const [index, setIndex] = useState<number>(0);
 
     // Funktion zum Laden der Daten
-    const loadData = async () => {
-        try {
-            const result = await fetchDailyContent();
-            if (JSON.stringify(result) !== JSON.stringify(data)) {
-                setData(result);
-            }
-        } catch (error) {
-            console.error('Fehler beim Laden der Daten:', error);
-        }
-    };
-
-    // Datenabruf alle 60 Sekunden
     useEffect(() => {
+        const loadData = async () => {
+           try {
+               const data = await fetchDailyContent();
+               setData(data)
+           } catch (error) {
+               console.error('Fehler beim Laden der Daten:', error);
+           }
+        }
         loadData();
-
-        const interval = setInterval(() => {
-            loadData();
-        }, 60000);
-
-        return () => clearInterval(interval);
-    }, [data]);
+    }, []);
 
 
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % 3);
-        }, 30000);
+        }, 5000);
 
         return () => clearInterval(interval);
     }, []);
