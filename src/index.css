@@ -46,6 +46,10 @@ html, body, #root {
   font-size: 200px;
 }
 
+.text-header {
+  font-size: 300px;
+}
+
 .text-10xl {
   font-size: 110px;
   line-height: 125px;
@@ -132,7 +136,7 @@ html, body, #root {
 }
 
 .preventBurnInMove {
-  animation: move 10s forwards infinite;
+  animation: move 100s forwards infinite;
   animation-timing-function: linear;
 }
 
