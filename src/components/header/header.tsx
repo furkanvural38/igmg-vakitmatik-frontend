@@ -8,7 +8,7 @@ function Header() {
                 <img src={igmgLogo} alt="igmg-logo" className="h-32" />
             </div>
             {/* Überschrift */}
-            <div className="flex-1 flex items-center justify-center border border-white border-7 rounded-2xl mr-8 ml-8">
+            <div className="flex-1 flex items-center justify-center border border-white border-7 rounded-header mr-8 ml-8">
                 <h1 className="text-12xl px-20 py-4 rounded font-bebas font-bold tracking-wide text-center letter-spacing">
                     IGMG HANNOVER ŞUBESİ AYASOFYA CAMİ
                 </h1>

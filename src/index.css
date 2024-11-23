@@ -51,7 +51,19 @@ html, body, #root {
   line-height: 125px;
 }
 
-.text-16xl {
+.rounded-footer {
+  border-radius: 8rem/* 24px */;
+}
+
+.rounded-header {
+  border-radius: 4rem/* 24px */;
+}
+
+.rounded-center {
+  border-radius: 4rem/* 24px */;
+}
+
+  .text-16xl {
   font-size: 190px;
 }
 

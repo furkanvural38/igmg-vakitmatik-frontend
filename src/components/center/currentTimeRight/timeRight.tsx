@@ -44,7 +44,7 @@ const TimeRight = () => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full bg-transparent border-7 border-white rounded-2xl p-4">
+        <div className="flex flex-col items-center justify-center w-full h-full bg-transparent border-7 border-white rounded-header p-4">
             {/* Uhrzeit */}
             <span className="text-white text-180xl font-bold">
                 {currentTime}
