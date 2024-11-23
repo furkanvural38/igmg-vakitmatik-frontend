@@ -56,7 +56,7 @@ const PrayerTimeAndClock = () => {
 
         return (
             <div
-                className={`border-7 rounded-center p-4 flex items-center justify-between ${containerClassName}`}
+                className={`border-7 border-red-700 rounded-center p-4 flex items-center justify-between ${containerClassName}`}
                 style={containerStyle}
             >
                 <div className="flex flex-col mt-16">
@@ -79,10 +79,10 @@ const PrayerTimeAndClock = () => {
 
     // Hauptrendering
     return (
-        <main className="flex items-center justify-center ml-8 mr-8">
+        <main className="flex w-full h-full ml-8 mr-8 border-7 border-blue-700">
             {/* Linke Seite: Gebetszeiten */}
             <div className="flex-1 w-1/2 border-white pr-4">
-                <div className="w-full h-full grid grid-cols-2 grid-rows-3 gap-4">
+                <div className="grid grid-cols-2 grid-rows-3 gap-4">
                     {renderPrayerTime('İmsak', prayerTimes.fajr, titles.fajr, 'fajr')}
                     {renderPrayerTime('İkindi', prayerTimes.asr, titles.asr, 'asr')}
                     {renderPrayerTime('Güneş', prayerTimes.sunrise, titles.shuruq, 'sunrise')}
@@ -94,7 +94,7 @@ const PrayerTimeAndClock = () => {
 
             {/* Rechte Seite: Uhrzeit und Datum */}
             <div className="flex-1 w-1/2 pl-4">
-                <div className="flex flex-col items-center justify-center w-full h-full bg-transparent border-7 border-white rounded-center p-4">
+                <div className="flex flex-col items-center justify-center bg-transparent border-7 border-pink-700 rounded-center p-4 w-full h-full">
                     {/* Aktuelle Uhrzeit */}
                     <span className="text-white text-180xl font-bold">
                         {currentTime}

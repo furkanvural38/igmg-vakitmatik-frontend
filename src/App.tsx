@@ -6,15 +6,13 @@ import PrayerTimeAndClock from "./components/center/prayerTimesGridLeft/PrayerTi
 function App() {
     return (
         <div className="flex flex-col justify-between min-h-screen background preventBurnInHue scrollbar-hide">
-            <div className="mt-8 preventBurnInMove">
+            <div className="flex-shrink-0 mt-8 preventBurnInMove">
                 <Header />
             </div>
-            <main className="preventBurnInMove">
-                <div className="">
-                    <PrayerTimeAndClock />
-                </div>
+            <main className="mt-8 mb-8 flex-grow flex items-center justify-center preventBurnInMove">
+                <PrayerTimeAndClock />
             </main>
-            <footer className="mb-8 preventBurnInMove">
+            <footer className="flex-shrink-0 mb-8 preventBurnInMove">
                 <Footer />
             </footer>
         </div>
