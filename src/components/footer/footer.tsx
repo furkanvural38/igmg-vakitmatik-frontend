@@ -40,12 +40,12 @@ function Footer() {
         <footer
             className="flex items-center bg-transparent text-white border-7 border-white rounded-footer h-800 ml-8 mr-8">
             <div className="flex-shrink-0 ml-2 border-r border-white">
-                <img src={image} alt="igmg-logo" className="h-500"/>
+                <img src={image} alt="igmg-logo" className="h-400"/>
             </div>
-            <div className="flex-grow items-center justify-center rounded-2xl ml-10 mr-4 h-600 flex overflow-hidden"
+            <div className="flex-grow items-center justify-center rounded-2xl ml-10 mr-4 h-400 flex overflow-hidden"
                  ref={handleScrollContainerRef}>
                 <div className="text-center pt-5">
-                    <p className="text-9xl h-600 grid place-items-center" ref={handleContentRef}>
+                    <p className="text-9xl h-400 grid place-items-center" ref={handleContentRef}>
                         {text}
                     </p>
                 </div>

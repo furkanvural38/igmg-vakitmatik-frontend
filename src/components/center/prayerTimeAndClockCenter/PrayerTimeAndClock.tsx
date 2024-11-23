@@ -60,17 +60,17 @@ const PrayerTimeAndClock = () => {
                 style={containerStyle}
             >
                 <div className="flex flex-col mt-16">
-                    <span className={`text-white text-12xl text-center font-bold ${textClassName}`} style={textStyle}>
+                    <span className={`text-white text-9xl text-center font-bold ${textClassName}`} style={textStyle}>
                         {timeName}
                     </span>
                     <span
-                        className={`text-white text-9xl text-center mt-5 min-w-800 ${textClassName}`}
+                        className={`text-white text-6xl text-center mt-5 min-w-800 ${textClassName}`}
                         style={textStyle}
                     >
                         {title}
                     </span>
                 </div>
-                <span className={`text-white text-32xl font-bold ${timeClassName}`} style={timeStyle}>
+                <span className={`text-white text-prayertime font-bold ${timeClassName}`} style={timeStyle}>
                     {timeValue}
                 </span>
             </div>
@@ -100,7 +100,7 @@ const PrayerTimeAndClock = () => {
                         {currentTime}
                     </span>
                     {/* Datum */}
-                    <div className="text-white text-12xl mt-4 text-center font-bold">
+                    <div className="text-white text-9xl mt-4 text-center font-bold">
                         <p className="mb-7">{prayerTimes.gregorianDateLong}</p>
                         <p>{prayerTimes.hijriDateLong}</p>
                     </div>
