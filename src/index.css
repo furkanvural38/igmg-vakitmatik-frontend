@@ -82,6 +82,11 @@ html, body, #root {
   height: 500px;
 }
 
+.separator {
+  width: 1px; /* Breite der Linie */
+  background-color: white; /* Farbe der Linie */
+  height: 80%; /* Höhe der Linie (füllt den Container aus) */
+}
 
 
 .font-bebas {
