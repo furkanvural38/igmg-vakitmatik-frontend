@@ -1,7 +1,7 @@
 import useCurrentTime from './useCurrentTime'; // Pfad zur useCurrentTime-Datei anpassen
-import { getDate } from '../getDate.tsx';
 import {PrayerTimes} from "../types.ts";
 import {useEffect, useState} from "react";
+import {fetchDailyPrayerTime} from "../service.tsx";
 
 const TimeRight = () => {
     const currentTime = useCurrentTime(); // Verwende den benutzerdefinierten Hook
@@ -10,7 +10,7 @@ const TimeRight = () => {
 
     const loadData = async () => {
         try {
-            const fetchedDates = await getDate();
+            const fetchedDates = await fetchDailyPrayerTime();
             if (JSON.stringify(fetchedDates) !== JSON.stringify(dates)) {
                 const { gregorianDateLong, hijriDateLong } = fetchedDates;
                 setDates({ hicriDate: hijriDateLong, miladiDate: gregorianDateLong });

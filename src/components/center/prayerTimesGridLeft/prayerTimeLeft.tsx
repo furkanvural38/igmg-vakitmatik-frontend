@@ -1,119 +1,77 @@
-import { useEffect, useState } from "react";
-import { getDate } from '../getDate.tsx';
-import { PrayerTimes } from '../types.ts';
-import useChangeTitle from './useChangeTitle.tsx';
-import { getCurrentPrayerTime } from '../currentPrayerTime/getCurrentPrayerTime.tsx';
-import { applyCurrentPrayerStyles } from '../helperClass/applyCurrentPrayerStyles.tsx';
-
-const getNextPrayerTime = (currentPrayer: string, prayerTimes: PrayerTimes): string => {
-    const prayerOrder: Array<keyof PrayerTimes> = ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'];
-    const nextPrayer = prayerOrder[(prayerOrder.indexOf(currentPrayer as keyof PrayerTimes) + 1) % prayerOrder.length];
-    return prayerTimes[nextPrayer] as string;
-};
+import { useEffect, useState } from 'react';
+import { PrayerTimes, PrayerTimesApiResponse } from '../types'; // Importiere die Typen
+import { getCurrentPrayerTime } from '../currentPrayerTime/getCurrentPrayerTime'; // Importiere die Methode
+import { applyCurrentPrayerStyles } from '../helperClass/applyCurrentPrayerStyles';
+import useChangeTitle from './useChangeTitle';
+import {fetchDailyPrayerTime} from "../service.tsx";
 
 const PrayerTimeLeft = () => {
     const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
     const [currentPrayerTime, setCurrentPrayerTime] = useState<string | null>(null);
-    const [blink, setBlink] = useState<boolean>(false);
-    const [blinkInterval, setBlinkInterval] = useState<NodeJS.Timeout | null>(null);
     const titles = useChangeTitle();
 
+    // Daten laden
     useEffect(() => {
-        const fetchData = async () => {
-            const fetchedPrayerTimes = await getDate();
-            setPrayerTimes(fetchedPrayerTimes);
-            if (fetchedPrayerTimes) {
-                const currentTime = getCurrentPrayerTime(fetchedPrayerTimes);
-                setCurrentPrayerTime(currentTime);
-                handleBlinking(fetchedPrayerTimes, currentTime);
+        const loadData = async () => {
+            try {
+                const response: PrayerTimesApiResponse = await fetchDailyPrayerTime();
+                if (response.success && response.data.length > 0) {
+                    setPrayerTimes(response.data[0]);
+                } else {
+                    console.error('Fehler beim Abrufen der Gebetszeiten:', response.message);
+                }
+            } catch (error) {
+                console.error('Fehler beim Laden der Daten:', error);
             }
         };
 
-        fetchData();
+        loadData();
+    }, []);
 
-        const intervalId = setInterval(() => {
+    useEffect(() => {
+        const checkCurrentPrayerTime = () => {
             if (prayerTimes) {
                 const currentTime = getCurrentPrayerTime(prayerTimes);
+                console.log(currentTime + " Das ist die Zeit aktuell");
                 setCurrentPrayerTime(currentTime);
-                handleBlinking(prayerTimes, currentTime);
             }
-        }, 60000);
-
-        return () => {
-            clearInterval(intervalId);
-            if (blinkInterval) clearInterval(blinkInterval);
         };
+        checkCurrentPrayerTime();
+        const intervalId = setInterval(checkCurrentPrayerTime, 60000);
+        return () => clearInterval(intervalId);
     }, [prayerTimes]);
 
-    const handleBlinking = (prayerTimes: PrayerTimes, currentPrayer: string) => {
-        const nextPrayerTime = getNextPrayerTime(currentPrayer, prayerTimes);
-
-        const currentTime = new Date();
-        const nextPrayerDate = new Date();
-        const [hours, minutes] = nextPrayerTime.split(':').map(Number);
-        nextPrayerDate.setHours(hours);
-        nextPrayerDate.setMinutes(minutes);
-        nextPrayerDate.setSeconds(0);
-        nextPrayerDate.setMilliseconds(0);
-
-        const timeDifference = nextPrayerDate.getTime() - currentTime.getTime();
-        const fiveMinutesInMs = 5 * 60 * 1000;
-
-        if (timeDifference <= fiveMinutesInMs && timeDifference > 0) {
-            startBlinking();
-        } else {
-            stopBlinking();
-        }
-    };
-
-    const startBlinking = () => {
-        setBlink(true);
-        if (blinkInterval) clearInterval(blinkInterval);
-        const intervalId = setInterval(() => {
-            setBlink(prevBlink => !prevBlink);
-        }, 2000);
-        setBlinkInterval(intervalId);
-    };
-
-    const stopBlinking = () => {
-        setBlink(false);
-        if (blinkInterval) clearInterval(blinkInterval);
-    };
 
     if (!prayerTimes) {
         return <div>Loading...</div>;
     }
 
-
     const renderPrayerTime = (timeName: string, timeValue: string, title: string, prayerKey: string) => {
-        const { containerClassName, containerStyle, textClassName, textStyle, timeClassName, timeStyle } = applyCurrentPrayerStyles(currentPrayerTime === prayerKey);
-
-        const isBlinking = blink && currentPrayerTime === prayerKey;
+        const { containerClassName, containerStyle, textClassName, textStyle, timeClassName, timeStyle } =
+            applyCurrentPrayerStyles(currentPrayerTime === prayerKey);
 
         return (
             <div
-                className={`border-7 rounded-2xl p-4 flex items-center justify-between ${containerClassName} ${isBlinking ? 'blink' : ''}`}
-                style={isBlinking ? {} : containerStyle}
+                className={`border-7 rounded-2xl p-4 flex items-center justify-between ${containerClassName}`}
+                style={containerStyle}
             >
                 <div className="flex flex-col mt-16">
-                    <span className={`text-white text-8xl text-center font-bold ${isBlinking ? '' : textClassName}`}
-                          style={isBlinking ? {} : textStyle}>
+                    <span className={`text-white text-8xl text-center font-bold ${textClassName}`} style={textStyle}>
                         {timeName}
                     </span>
                     <span
-                        className={`text-white text-6xl text-center mt-5 font-bold min-w-375 ${isBlinking ? '' : textClassName}`}
-                        style={isBlinking ? {} : textStyle}>
-                    {title}
-                </span>
+                        className={`text-white text-6xl text-center mt-5 font-bold min-w-375 ${textClassName}`}
+                        style={textStyle}
+                    >
+                        {title}
+                    </span>
                 </div>
-                <span className={`text-white text-16xl font-bold ${isBlinking ? '' : timeClassName}`}
-                      style={isBlinking ? {} : timeStyle}>
+                <span className={`text-white text-16xl font-bold ${timeClassName}`} style={timeStyle}>
                     {timeValue}
                 </span>
             </div>
         );
     };
-
 
     return (
         <div className="w-full h-full grid grid-cols-2 grid-rows-3 gap-4">
