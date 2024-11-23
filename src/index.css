@@ -63,12 +63,16 @@ html, body, #root {
   border-radius: 4rem/* 24px */;
 }
 
-  .text-16xl {
+.text-16xl {
   font-size: 190px;
 }
 
+.text-32xl {
+  font-size: 300px;
+}
+
 .min-w-375 {
-  min-width: 375px;
+  min-width: 800px;
 }
 .h-800 {
   height: 800px;

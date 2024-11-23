@@ -60,17 +60,17 @@ const PrayerTimeAndClock = () => {
                 style={containerStyle}
             >
                 <div className="flex flex-col mt-16">
-                    <span className={`text-white text-8xl text-center font-bold ${textClassName}`} style={textStyle}>
+                    <span className={`text-white text-12xl text-center font-bold ${textClassName}`} style={textStyle}>
                         {timeName}
                     </span>
                     <span
-                        className={`text-white text-6xl text-center mt-5 font-bold min-w-375 ${textClassName}`}
+                        className={`text-white text-9xl text-center mt-5 min-w-375 border-yellow-500 border-7 ${textClassName}`}
                         style={textStyle}
                     >
                         {title}
                     </span>
                 </div>
-                <span className={`text-white text-16xl font-bold ${timeClassName}`} style={timeStyle}>
+                <span className={`text-white text-32xl font-bold ${timeClassName}`} style={timeStyle}>
                     {timeValue}
                 </span>
             </div>
@@ -79,10 +79,10 @@ const PrayerTimeAndClock = () => {
 
     // Hauptrendering
     return (
-        <main className="flex w-full h-full ml-8 mr-8 border-7 border-blue-700">
+        <main className="flex flex-grow justify-center w-full h-full ml-8 mr-8">
             {/* Linke Seite: Gebetszeiten */}
-            <div className="flex-1 w-1/2 border-white pr-4">
-                <div className="grid grid-cols-2 grid-rows-3 gap-4">
+            <div className="flex-1 mr-4">
+                <div className="h-full grid grid-cols-2 grid-rows-3 gap-4">
                     {renderPrayerTime('İmsak', prayerTimes.fajr, titles.fajr, 'fajr')}
                     {renderPrayerTime('İkindi', prayerTimes.asr, titles.asr, 'asr')}
                     {renderPrayerTime('Güneş', prayerTimes.sunrise, titles.shuruq, 'sunrise')}
@@ -93,8 +93,8 @@ const PrayerTimeAndClock = () => {
             </div>
 
             {/* Rechte Seite: Uhrzeit und Datum */}
-            <div className="flex-1 w-1/2 pl-4">
-                <div className="flex flex-col items-center justify-center bg-transparent border-7 border-pink-700 rounded-center p-4 w-full h-full">
+            <div className="flex-1">
+                <div className="flex flex-col items-center justify-center bg-transparent border-7 border-white rounded-center p-4 w-full h-full">
                     {/* Aktuelle Uhrzeit */}
                     <span className="text-white text-180xl font-bold">
                         {currentTime}

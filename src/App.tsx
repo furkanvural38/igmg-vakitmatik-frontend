@@ -9,7 +9,7 @@ function App() {
             <div className="flex-shrink-0 mt-8 preventBurnInMove">
                 <Header />
             </div>
-            <main className="mt-8 mb-8 flex-grow flex items-center justify-center preventBurnInMove">
+            <main className="mt-8 mb-8 mr-8 ml-8 flex-grow flex flex-col items-center justify-center preventBurnInMove">
                 <PrayerTimeAndClock />
             </main>
             <footer className="flex-shrink-0 mb-8 preventBurnInMove">
