@@ -1,15 +1,46 @@
 import { useEffect, useState } from 'react';
-import { PrayerTimes, PrayerTimesApiResponse } from '../types'; // Importiere die Typen
-import { getCurrentPrayerTime } from '../currentPrayerTime/getCurrentPrayerTime'; // Importiere die Methode
+import { PrayerTimes, PrayerTimesApiResponse } from '../types';
+import { getCurrentPrayerTime } from '../currentPrayerTime/getCurrentPrayerTime';
 import { applyCurrentPrayerStyles } from '../helperClass/applyCurrentPrayerStyles';
 import useChangeTitle from './useChangeTitle';
 import { fetchDailyPrayerTime } from "../service.tsx";
 import useCurrentTime from "../currentTimeRight/useCurrentTime.tsx";
 
+const getNextPrayerTime = (currentPrayer: string, prayerTimes: PrayerTimes): string => {
+    const prayerOrder: Array<keyof PrayerTimes> = ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'];
+    const nextPrayer = prayerOrder[(prayerOrder.indexOf(currentPrayer as keyof PrayerTimes) + 1) % prayerOrder.length];
+    return prayerTimes[nextPrayer] as string;
+};
+
+const calculateTimeUntilNextPrayer = (currentPrayer: string, prayerTimes: PrayerTimes): string => {
+    const nextPrayerTime = getNextPrayerTime(currentPrayer, prayerTimes);
+
+    const currentTime = new Date();
+    const nextPrayerDate = new Date();
+    const [hours, minutes] = nextPrayerTime.split(':').map(Number);
+    nextPrayerDate.setHours(hours);
+    nextPrayerDate.setMinutes(minutes);
+    nextPrayerDate.setSeconds(0);
+    nextPrayerDate.setMilliseconds(0);
+
+    const timeDifference = nextPrayerDate.getTime() - currentTime.getTime();
+
+    if (timeDifference <= 0) {
+        return "00:00:00"; // Falls die Zeit überschritten ist
+    }
+
+    const totalSeconds = Math.floor(timeDifference / 1000);
+    const hoursLeft = Math.floor(totalSeconds / 3600);
+    const minutesLeft = Math.floor((totalSeconds % 3600) / 60);
+    const secondsLeft = totalSeconds % 60;
+
+    return `${hoursLeft.toString().padStart(2, '0')}:${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
+};
 
 const PrayerTimeAndClock = () => {
     const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
     const [currentPrayerTime, setCurrentPrayerTime] = useState<string | null>(null);
+    const [calculatedPrayerTimeUntilNext, setCalculatedPrayerTimeUntilNext] = useState<string>("00:00:00");
     const titles = useChangeTitle();
     const currentTime = useCurrentTime();
 
@@ -48,10 +79,12 @@ const PrayerTimeAndClock = () => {
             if (prayerTimes) {
                 const currentTime = getCurrentPrayerTime(prayerTimes);
                 setCurrentPrayerTime(currentTime);
+                const timeUntilNextPrayer = calculateTimeUntilNextPrayer(currentTime, prayerTimes);
+                setCalculatedPrayerTimeUntilNext(timeUntilNextPrayer);
             }
         };
         checkCurrentPrayerTime();
-        const intervalId = setInterval(checkCurrentPrayerTime, 60000);
+        const intervalId = setInterval(checkCurrentPrayerTime, 1000); // Aktualisiere jede Sekunde
         return () => clearInterval(intervalId);
     }, [prayerTimes]);
 
@@ -109,9 +142,14 @@ const PrayerTimeAndClock = () => {
                         {currentTime}
                     </span>
                     {/* Datum */}
-                    <div className="text-white text-9xl mt-4 text-center font-bold">
+                    <div className="text-white text-9xl mt-4 text-center">
                         <p>{prayerTimes.hijriDateLong}</p>
                         <p className="mt-8">{prayerTimes.gregorianDateShort}</p>
+                        <p className="mt-8">
+                            {"Vaktinin çikmasına: "}
+                            <span className="font-bold">{calculatedPrayerTimeUntilNext}</span>
+                            {" kaldı"}
+                        </p>
                     </div>
                 </div>
             </div>
