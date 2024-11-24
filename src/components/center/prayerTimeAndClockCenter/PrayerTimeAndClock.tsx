@@ -110,8 +110,8 @@ const PrayerTimeAndClock = () => {
                     </span>
                     {/* Datum */}
                     <div className="text-white text-9xl mt-4 text-center font-bold">
-                        <p className="mb-7">{prayerTimes.gregorianDateLong}</p>
                         <p>{prayerTimes.hijriDateLong}</p>
+                        <p className="mt-8">{prayerTimes.gregorianDateShort}</p>
                     </div>
                 </div>
             </div>
