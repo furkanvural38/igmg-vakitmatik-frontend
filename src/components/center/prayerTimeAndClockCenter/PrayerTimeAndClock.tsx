@@ -51,7 +51,7 @@ const PrayerTimeAndClock = () => {
             }
         };
         checkCurrentPrayerTime();
-        const intervalId = setInterval(checkCurrentPrayerTime, 60000);
+        const intervalId = setInterval(checkCurrentPrayerTime, 1000);
         return () => clearInterval(intervalId);
     }, [prayerTimes]);
 
