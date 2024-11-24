@@ -6,10 +6,41 @@ import useChangeTitle from './useChangeTitle';
 import { fetchDailyPrayerTime } from "../service.tsx";
 import useCurrentTime from "../currentTimeRight/useCurrentTime.tsx";
 
+const getNextPrayerTime = (currentPrayer: string, prayerTimes: PrayerTimes): string => {
+    const prayerOrder: Array<keyof PrayerTimes> = ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'];
+    const nextPrayer = prayerOrder[(prayerOrder.indexOf(currentPrayer as keyof PrayerTimes) + 1) % prayerOrder.length];
+    return prayerTimes[nextPrayer] as string;
+};
+
+const calculateTimeUntilNextPrayer = (currentPrayer: string, prayerTimes: PrayerTimes): string => {
+    const nextPrayerTime = getNextPrayerTime(currentPrayer, prayerTimes);
+
+    const currentTime = new Date();
+    const nextPrayerDate = new Date();
+    const [hours, minutes] = nextPrayerTime.split(':').map(Number);
+    nextPrayerDate.setHours(hours);
+    nextPrayerDate.setMinutes(minutes);
+    nextPrayerDate.setSeconds(0);
+    nextPrayerDate.setMilliseconds(0);
+
+    const timeDifference = nextPrayerDate.getTime() - currentTime.getTime();
+
+    if (timeDifference <= 0) {
+        return "00:00:00"; // Falls die Zeit überschritten ist
+    }
+
+    const totalSeconds = Math.floor(timeDifference / 1000);
+    const hoursLeft = Math.floor(totalSeconds / 3600);
+    const minutesLeft = Math.floor((totalSeconds % 3600) / 60);
+    const secondsLeft = totalSeconds % 60;
+
+    return `${hoursLeft.toString().padStart(2, '0')}:${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
+};
 
 const PrayerTimeAndClock = () => {
     const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
     const [currentPrayerTime, setCurrentPrayerTime] = useState<string | null>(null);
+    const [leftTime, setLeftTime] = useState<string>("00:00:00"); // Hinzugefügt: Zustand für verbleibende Zeit
     const titles = useChangeTitle();
     const currentTime = useCurrentTime();
 
@@ -44,17 +75,25 @@ const PrayerTimeAndClock = () => {
     }, []);
 
     useEffect(() => {
+        const updateTimeUntilNextPrayer = () => {
+            if (prayerTimes && currentPrayerTime) {
+                const timeUntilNextPrayer = calculateTimeUntilNextPrayer(currentPrayerTime, prayerTimes);
+                setLeftTime(timeUntilNextPrayer);
+            }
+        };
+
         const checkCurrentPrayerTime = () => {
             if (prayerTimes) {
                 const currentTime = getCurrentPrayerTime(prayerTimes);
                 setCurrentPrayerTime(currentTime);
+                updateTimeUntilNextPrayer();
             }
         };
-        checkCurrentPrayerTime();
-        const intervalId = setInterval(checkCurrentPrayerTime, 60000);
-        return () => clearInterval(intervalId);
-    }, [prayerTimes]);
 
+        checkCurrentPrayerTime();
+        const intervalId = setInterval(checkCurrentPrayerTime, 1000);
+        return () => clearInterval(intervalId);
+    }, [prayerTimes, currentPrayerTime]);
 
     const renderPrayerTime = (timeName: string, timeValue: string, title: string, prayerKey: string) => {
         const { containerClassName, containerStyle, textClassName, textStyle, timeClassName, timeStyle } =
@@ -111,21 +150,31 @@ const PrayerTimeAndClock = () => {
                 </div>
             </div>
 
-            {/* Rechte Seite: Uhrzeit und Datum */}
-            <div className="flex-1">
-                <div className="flex flex-col items-center justify-center bg-transparent border-7 border-white rounded-center p-4 w-full h-full">
-                    {/* Aktuelle Uhrzeit */}
-                    <span className="text-white text-180xl font-bold">
-                        {currentTime}
-                    </span>
-                    {/* Datum */}
-                    <div className="text-white text-9xl mt-4 text-center font-bold">
-                        <p>{displayPrayerTimes.hijriDateLong}</p>
-                        <p className="mt-8">{displayPrayerTimes.gregorianDateShort}</p>
+            {/* Rechte Seite: Uhrzeit, Datum und Left Time */}
+            <div className="flex-1 flex flex-col items-center justify-between">
+                {/* Aktuelle Uhrzeit und Datum */}
+                <div className="bg-transparent border-7 border-white rounded-center w-full mb-4 pb-14">
+                    <div className="flex flex-col items-center">
+                        {/* Aktuelle Uhrzeit */}
+                        <span className="text-white text-180xl font-bold">{currentTime}</span>
+                        {/* Datum */}
+                        <div className="text-white text-9xl mt-4 text-center font-bold">
+                            <p>{displayPrayerTimes.hijriDateLong}</p>
+                            <p className="mt-8">{displayPrayerTimes.gregorianDateShort}</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Verbleibende Zeit bis zum nächsten Gebet */}
+                <div className="bg-transparent border-7 border-white rounded-center w-full h-full flex items-center justify-center">
+                    <div className="text-white text-9xl text-center">
+                        <p>Yatsı namazına kalan Süre:</p>
+                        <p className="text-12xl font-bold">{leftTime}</p>
                     </div>
                 </div>
             </div>
         </main>
+
     );
 };
 
