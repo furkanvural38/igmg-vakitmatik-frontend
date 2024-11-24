@@ -55,9 +55,6 @@ const PrayerTimeAndClock = () => {
         return () => clearInterval(intervalId);
     }, [prayerTimes]);
 
-    if (!prayerTimes) {
-        return <div>Loading...</div>;
-    }
 
     const renderPrayerTime = (timeName: string, timeValue: string, title: string, prayerKey: string) => {
         const { containerClassName, containerStyle, textClassName, textStyle, timeClassName, timeStyle } =
@@ -86,18 +83,31 @@ const PrayerTimeAndClock = () => {
         );
     };
 
+    const defaultPrayerTimes = {
+        fajr: '00:00',
+        asr: '00:00',
+        sunrise: '00:00',
+        maghrib: '00:00',
+        dhuhr: '00:00',
+        isha: '00:00',
+        hijriDateLong: '', // Leer, wie gewünscht
+        gregorianDateShort: new Date().toLocaleDateString(), // Aktuelles Datum
+    };
+
+    const displayPrayerTimes = prayerTimes || defaultPrayerTimes;
+
     // Hauptrendering
     return (
         <main className="flex flex-grow justify-center w-full h-full ml-8 mr-8">
             {/* Linke Seite: Gebetszeiten */}
             <div className="flex-1 mr-4">
                 <div className="h-full grid grid-cols-2 grid-rows-3 gap-4">
-                    {renderPrayerTime('İmsak', prayerTimes.fajr, titles.fajr, 'fajr')}
-                    {renderPrayerTime('İkindi', prayerTimes.asr, titles.asr, 'asr')}
-                    {renderPrayerTime('Güneş', prayerTimes.sunrise, titles.shuruq, 'sunrise')}
-                    {renderPrayerTime('Akşam', prayerTimes.maghrib, titles.maghrib, 'maghrib')}
-                    {renderPrayerTime('Öğle', prayerTimes.dhuhr, titles.dhuhr, 'dhuhr')}
-                    {renderPrayerTime('Yatsı', prayerTimes.isha, titles.ishaa, 'isha')}
+                    {renderPrayerTime('İmsak', displayPrayerTimes.fajr, titles.fajr, 'fajr')}
+                    {renderPrayerTime('İkindi', displayPrayerTimes.asr, titles.asr, 'asr')}
+                    {renderPrayerTime('Güneş', displayPrayerTimes.sunrise, titles.shuruq, 'sunrise')}
+                    {renderPrayerTime('Akşam', displayPrayerTimes.maghrib, titles.maghrib, 'maghrib')}
+                    {renderPrayerTime('Öğle', displayPrayerTimes.dhuhr, titles.dhuhr, 'dhuhr')}
+                    {renderPrayerTime('Yatsı', displayPrayerTimes.isha, titles.ishaa, 'isha')}
                 </div>
             </div>
 
@@ -110,8 +120,8 @@ const PrayerTimeAndClock = () => {
                     </span>
                     {/* Datum */}
                     <div className="text-white text-9xl mt-4 text-center font-bold">
-                        <p>{prayerTimes.hijriDateLong}</p>
-                        <p className="mt-8">{prayerTimes.gregorianDateShort}</p>
+                        <p>{displayPrayerTimes.hijriDateLong}</p>
+                        <p className="mt-8">{displayPrayerTimes.gregorianDateShort}</p>
                     </div>
                 </div>
             </div>
