@@ -76,7 +76,7 @@ const PrayerTimeAndClock = () => {
                         {title}
                     </span>
                 </div>
-                <span className={`text-white text-prayertime font-bold ${timeClassName}`} style={timeStyle}>
+                <span className={`scale-y-125 text-white text-prayertime font-bold ${timeClassName}`} style={timeStyle}>
                     {timeValue}
                 </span>
             </div>
