@@ -83,7 +83,6 @@ const PrayerTimeAndClock = () => {
         );
     };
 
-    // Default-Werte, falls `prayerTimes` null ist
     const defaultPrayerTimes = {
         fajr: '00:00',
         asr: '00:00',
