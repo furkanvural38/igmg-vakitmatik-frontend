@@ -16,12 +16,12 @@ const getNextPrayerName = (currentPrayer: string): string => {
     const prayerOrder: Array<keyof PrayerTimes> = ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'];
     const nextPrayer = prayerOrder[(prayerOrder.indexOf(currentPrayer as keyof PrayerTimes) + 1) % prayerOrder.length];
     const prayerNames: { [key: string]: string } = {
-        fajr: 'İmsak',
-        sunrise: 'Güneş',
-        dhuhr: 'Öğle',
-        asr: 'İkindi',
-        maghrib: 'Akşam',
-        isha: 'Yatsı',
+        fajr: 'Fajr',
+        sunrise: 'Shuruq',
+        dhuhr: 'Dhuhr',
+        asr: 'Asr',
+        maghrib: 'Maghrib',
+        isha: 'Isha\'a',
     };
     return prayerNames[nextPrayer] || '';
 };
@@ -188,12 +188,12 @@ const PrayerTimeAndClock = () => {
         <main className="flex flex-grow justify-center w-full h-full ml-8 mr-8">
             <div className="flex-1 mr-4">
                 <div className="h-full grid grid-cols-2 grid-rows-3 gap-4">
-                    {renderPrayerTime('İmsak', displayPrayerTimes.fajr, titles.fajr, 'fajr')}
-                    {renderPrayerTime('İkindi', displayPrayerTimes.asr, titles.asr, 'asr')}
-                    {renderPrayerTime('Güneş', displayPrayerTimes.sunrise, titles.shuruq, 'sunrise')}
-                    {renderPrayerTime('Akşam', displayPrayerTimes.maghrib, titles.maghrib, 'maghrib')}
-                    {renderPrayerTime('Öğle', displayPrayerTimes.dhuhr, titles.dhuhr, 'dhuhr')}
-                    {renderPrayerTime('Yatsı', displayPrayerTimes.isha, titles.ishaa, 'isha')}
+                    {renderPrayerTime('Fajr', displayPrayerTimes.fajr, titles.fajr, 'fajr')}
+                    {renderPrayerTime('Asr', displayPrayerTimes.asr, titles.asr, 'asr')}
+                    {renderPrayerTime('Shuruq', displayPrayerTimes.sunrise, titles.shuruq, 'sunrise')}
+                    {renderPrayerTime('Maghrib', displayPrayerTimes.maghrib, titles.maghrib, 'maghrib')}
+                    {renderPrayerTime('Dhuhr', displayPrayerTimes.dhuhr, titles.dhuhr, 'dhuhr')}
+                    {renderPrayerTime('Isha\'a', displayPrayerTimes.isha, titles.ishaa, 'isha')}
                 </div>
             </div>
 
@@ -210,7 +210,7 @@ const PrayerTimeAndClock = () => {
 
                 <div className="bg-transparent border-7 border-white rounded-center w-full h-full flex items-center justify-center">
                     <div className="text-white text-9xl text-center">
-                        <p>{nextPrayerName} Vaktine kalan sûre:</p>
+                        <p>Bis {nextPrayerName} verbleibt noch:</p>
                         <p className="text-12xl font-bold">{leftTime}</p>
                     </div>
                 </div>
