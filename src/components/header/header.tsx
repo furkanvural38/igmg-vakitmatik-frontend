@@ -9,8 +9,8 @@ function Header() {
             </div>
             {/* Überschrift */}
             <div className="flex-1 flex items-center justify-center border border-white border-7 rounded-header mr-8 ml-72">
-                <h1 className="text-white text-header px-20 py-4 rounded font-bebas font-bold tracking-wide text-center letter-spacing">
-                    IGMG HANNOVER ŞUBESİ AYASOFYA CAMİ
+                <h1 className="text-white text-header px-16 py-4 rounded font-bebas font-bold tracking-wide text-center letter-spacing">
+                    IGMG GARBSEN ŞUBESİ EYÜP SULTAN CAMİ
                 </h1>
             </div>
         </header>
