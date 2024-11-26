@@ -10,10 +10,10 @@ interface PrayerTitle {
 const prayerTitles: { [key: string]: PrayerTitle } = {
     fajr: { arabic: 'الصلاة الفجر', latin: 'İmsak' },
     shuruq: { arabic: 'الشروق', latin: 'Güneş' },
-    dhuhr: { arabic: 'الصلاة الظهر', latin: 'DhuhrÖğle' },
+    dhuhr: { arabic: 'الصلاة الظهر', latin: 'Öğle' },
     asr: { arabic: 'الصلاة العصر', latin: 'İkindi' },
     maghrib: { arabic: 'الصلاة المغرب', latin: 'Akşam' },
-    ishaa: { arabic: 'الصلاة العشاء', latin: 'Isha\'aYatsı' },
+    ishaa: { arabic: 'الصلاة العشاء', latin: 'Yatsı' },
 };
 
 const useChangeTitle = () => {
