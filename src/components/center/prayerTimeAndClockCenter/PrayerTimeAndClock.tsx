@@ -154,7 +154,7 @@ const PrayerTimeAndClock = () => {
                 style={containerStyle}
             >
                 <div className="flex flex-col mt-16">
-                    <span className={`text-white text-9xl text-center font-bold ${textClassName}`} style={textStyle}>
+                    <span className={`text-white text-8xl text-center font-bold ${textClassName}`} style={textStyle}>
                         {timeName}
                     </span>
                     <span
