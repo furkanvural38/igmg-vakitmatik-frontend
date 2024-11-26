@@ -201,7 +201,7 @@ const PrayerTimeAndClock = () => {
                 <div className="bg-transparent border-7 border-white rounded-center w-full mb-4 pb-14">
                     <div className="flex flex-col items-center">
                         <span className="text-white text-180xl font-bold">{currentTime}</span>
-                        <div className="text-white text-9xl mt-4 text-center font-bold">
+                        <div className="text-white text-9xl mt-4 text-center">
                             <p>{displayPrayerTimes.hijriDateLong}</p>
                             <p className="mt-8">{displayPrayerTimes.gregorianDateShort}</p>
                         </div>
