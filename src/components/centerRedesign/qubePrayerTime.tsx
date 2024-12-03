@@ -1,14 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
+import {PrayerTimes, PrayerTimesApiResponse} from "../center/types.ts";
+import {fetchDailyPrayerTime} from "../center/service.tsx";
 
 // Interface für Gebetszeiten
-interface PrayerTimes {
-    fajr: string;
-    sunrise: string;
-    dhuhr: string;
-    asr: string;
-    maghrib: string;
-    isha: string;
-}
+
 
 // Hilfsfunktion: Zeit in Minuten umrechnen
 const timeToMinutes = (time: string): number => {
@@ -67,23 +62,20 @@ const QubePrayerTime = () => {
 
     // Gebetszeiten initial laden
     useEffect(() => {
-        const fetchPrayerTimes = async () => {
+        const loadData = async () => {
             try {
-                const testData: PrayerTimes = {
-                    fajr: "05:23",
-                    sunrise: "06:34",
-                    dhuhr: "09:14",
-                    asr: "17:01",
-                    maghrib: "20:05",
-                    isha: "21:46",
-                };
-                setPrayerTimes(testData);
+                const response: PrayerTimesApiResponse = await fetchDailyPrayerTime();
+                if (response.success && response.data.length > 0) {
+                    setPrayerTimes(response.data[0]); // Setze die Gebetszeiten
+                } else {
+                    console.error('Fehler beim Abrufen der Gebetszeiten:', response.message);
+                }
             } catch (error) {
-                console.error("Fehler beim Laden der Gebetszeiten:", error);
+                console.error('Fehler beim Laden der Daten:', error);
             }
         };
 
-        fetchPrayerTimes();
+        loadData();
     }, []);
 
     // Aktualisiere die Gebetszeiten alle 60 Sekunden
