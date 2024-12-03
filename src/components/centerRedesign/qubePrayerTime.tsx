@@ -2,12 +2,6 @@ import { useState, useEffect } from "react";
 import { PrayerTimes, PrayerTimesApiResponse } from "../center/types.ts";
 import { fetchDailyPrayerTime } from "../center/service.tsx";
 
-// Interface für Gebetszeiten
-interface Prayer {
-    name: string;
-    time: string;
-}
-
 // Hilfsfunktion: Zeit in Minuten umrechnen
 const timeToMinutes = (time: string): number => {
     const [hours, minutes] = time.split(":").map(Number);
@@ -29,57 +23,11 @@ const calculateProgressPercentage = (currentMinutes: number, startMinutes: numbe
     return Math.min(100, Math.max(0, Math.round((elapsed / totalSpan) * 100))); // Begrenze zwischen 0% und 100%
 };
 
-// Hilfsfunktion: Aktuelle und nächste Gebetszeit berechnen
-const calculateCurrentAndNextPrayer = (
-    prayerTimes: PrayerTimes,
-    currentTime: Date
-): { currentPrayer: Prayer; nextPrayer: Prayer } => {
-    const prayerOrder: Array<keyof PrayerTimes> = ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'];
-    const currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes();
-
-    let currentPrayer: Prayer = { name: "", time: "" };
-    let nextPrayer: Prayer = { name: "", time: "" };
-
-    for (let i = 0; i < prayerOrder.length; i++) {
-        const prayerName = prayerOrder[i];
-        const prayerTime = prayerTimes[prayerName];
-
-        if (typeof prayerTime === "string") {
-            const prayerMinutes = timeToMinutes(prayerTime);
-
-            if (currentMinutes >= prayerMinutes) {
-                currentPrayer = { name: prayerName, time: prayerTime };
-                const nextIndex = (i + 1) % prayerOrder.length;
-                const nextPrayerName = prayerOrder[nextIndex];
-                const nextPrayerTime = prayerTimes[nextPrayerName];
-
-                if (typeof nextPrayerTime === "string") {
-                    nextPrayer = {
-                        name: nextPrayerName,
-                        time: nextPrayerTime,
-                    };
-                }
-            }
-        }
-    }
-
-    if (!currentPrayer.name) {
-        const firstPrayerName = prayerOrder[0];
-        const firstPrayerTime = prayerTimes[firstPrayerName];
-
-        currentPrayer = { name: "", time: "Noch kein Gebet gestartet" };
-        if (typeof firstPrayerTime === "string") {
-            nextPrayer = { name: firstPrayerName, time: firstPrayerTime };
-        }
-    }
-
-    return { currentPrayer, nextPrayer };
-};
-
+// Hauptkomponente
 const QubePrayerTime = () => {
     const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
-    const [currentPrayer, setCurrentPrayer] = useState<Prayer | null>(null);
-    const [nextPrayer, setNextPrayer] = useState<Prayer | null>(null);
+    const [currentPrayer, setCurrentPrayer] = useState<string | null>(null);
+    const [nextPrayer, setNextPrayer] = useState<string | null>(null);
     const [timeDifference, setTimeDifference] = useState<string>("Wird geladen...");
     const [progressPercentage, setProgressPercentage] = useState<number>(0);
 
@@ -103,34 +51,77 @@ const QubePrayerTime = () => {
         const interval = setInterval(() => {
             if (prayerTimes) {
                 const currentTime = new Date();
-                const { currentPrayer, nextPrayer } = calculateCurrentAndNextPrayer(
-                    prayerTimes,
-                    currentTime
+                const currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes();
+
+                const keys = ["fajr", "sunrise", "dhuhr", "asr", "maghrib", "isha"] as const;
+                const times = keys.map((key) => ({
+                    name: key,
+                    minutes: timeToMinutes(prayerTimes[key]),
+                }));
+
+                // Finde die aktuelle und nächste Gebetszeit
+                let current = times.findIndex(
+                    (time, index) =>
+                        currentMinutes >= time.minutes &&
+                        currentMinutes < times[(index + 1) % times.length].minutes
                 );
-                setCurrentPrayer(currentPrayer);
-                setNextPrayer(nextPrayer);
 
-                if (currentPrayer && nextPrayer) {
-                    const currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes();
-                    const startMinutes = timeToMinutes(currentPrayer.time);
-                    const endMinutes = timeToMinutes(nextPrayer.time);
+                if (current === -1) current = times.length - 1;
 
-                    // Aktualisiere Zeitdifferenz und Prozentsatz
-                    setTimeDifference(calculateTimeDifference(currentMinutes, endMinutes));
-                    setProgressPercentage(calculateProgressPercentage(currentMinutes, startMinutes, endMinutes));
-                }
+                setCurrentPrayer(keys[current]);
+                setNextPrayer(keys[(current + 1) % times.length]);
+
+                const startMinutes = times[current].minutes;
+                const endMinutes = times[(current + 1) % times.length].minutes;
+
+                // Aktualisiere Zeitdifferenz und Prozentsatz
+                setTimeDifference(calculateTimeDifference(currentMinutes, endMinutes));
+                setProgressPercentage(calculateProgressPercentage(currentMinutes, startMinutes, endMinutes));
             }
         }, 1000);
         return () => clearInterval(interval);
-    }, [prayerTimes, currentPrayer, nextPrayer]);
+    }, [prayerTimes]);
+
+    const prayerLabels: { [key: string]: string } = {
+        fajr: "Imsak",
+        sunrise: "Sunrise",
+        dhuhr: "Dhuhr",
+        asr: "Asr",
+        maghrib: "Maghrib",
+        isha: "Isha",
+    };
 
     return (
-        <div>
-            <h1>Qube Gebetszeiten</h1>
-            <p>Aktuelle Gebetszeit: {currentPrayer ? `${currentPrayer.name} - ${currentPrayer.time}` : "Wird geladen..."}</p>
-            <p>Nächste Gebetszeit: {nextPrayer ? `${nextPrayer.name} - ${nextPrayer.time}` : "Wird geladen..."}</p>
-            <p>Zeit bis zur nächsten Gebetszeit: {timeDifference}</p>
-            <p>Fortschritt bis zur nächsten Gebetszeit: {progressPercentage}%</p>
+        <div className="flex justify-center items-center p-12 space-x-12">
+            {prayerTimes &&
+                Object.entries(prayerLabels).map(([key, label]) => {
+                    const isActive = key === currentPrayer;
+                    return (
+                        <div key={key} className="relative">
+                            {/* Progressbar und verbleibende Zeit außerhalb der Box */}
+                            {isActive && (
+                                <div className="absolute -top-20 w-96">
+                                    <div className="text-center text-gray-300 text-3xl mb-4">{timeDifference}</div>
+                                    <div className="relative h-6 bg-green-500 w-full rounded overflow-hidden">
+                                        <div
+                                            className="bg-gray-800 h-full"
+                                            style={{ width: `${progressPercentage}%` }}
+                                        ></div>
+                                    </div>
+                                </div>
+                            )}
+                            {/* Box für Gebetszeit */}
+                            <div
+                                className={`text-gray-300 w-96 h-96 flex flex-col justify-center items-center rounded shadow-lg ${
+                                    isActive ? "backgroundQubeActive" : "backgroundQubeDeactive"
+                                }`}
+                            >
+                                <span className="text-3xl font-bold">{label}</span>
+                                <span className="text-2xl">{prayerTimes[key as keyof PrayerTimes] || "00:00"}</span>
+                            </div>
+                        </div>
+                    );
+                })}
         </div>
     );
 };
