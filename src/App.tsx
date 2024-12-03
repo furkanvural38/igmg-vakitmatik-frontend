@@ -2,6 +2,7 @@ import Header from '../src/components/header/header';
 import Footer from '../src/components/footer/footer';
 
 import PrayerTimeAndClock from "./components/center/prayerTimeAndClockCenter/PrayerTimeAndClock.tsx";
+import QubePrayerTime from "./components/centerRedesign/qubePrayerTime.tsx";
 
 function App() {
     return (
@@ -10,7 +11,7 @@ function App() {
                 <Header />
             </div>
             <main className="mt-8 mb-8 mr-8 ml-8 flex-grow flex flex-col items-center justify-center preventBurnInMove">
-                <PrayerTimeAndClock />
+                <QubePrayerTime />
             </main>
             <footer className="flex-shrink-0 mb-8 preventBurnInMove">
                 <Footer />
