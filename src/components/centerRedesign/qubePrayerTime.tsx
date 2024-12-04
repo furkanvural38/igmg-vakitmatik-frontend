@@ -8,6 +8,8 @@ import { HiOutlineSun } from "react-icons/hi";
 import { AiFillSun } from "react-icons/ai";
 import { PiSunHorizonFill, PiSunHorizonLight } from "react-icons/pi";
 import { LuCloudSun } from "react-icons/lu";
+import DateBoxes from "./dateBoxes.tsx";
+import CurrentTimeDisplay from "./currentTimeDisplay.tsx";
 
 // Hilfsfunktion: Zeit in Minuten umrechnen
 const timeToMinutes = (time: string): number => {
@@ -49,12 +51,12 @@ const QubePrayerTime = () => {
     const titles = useChangeTitle();
 
     const icons: { [key: string]: JSX.Element } = {
-        fajr: <PiSunHorizonLight className="text-8xl text-[#a7a7a7] mb-4" />,
-        sunrise: <HiOutlineSun className="text-8xl text-[#a7a7a7] mb-4" />,
-        dhuhr: <AiFillSun className="text-8xl text-[#a7a7a7] mb-4" />,
-        asr: <LuCloudSun className="text-8xl text-[#a7a7a7] mb-4" />,
-        maghrib: <PiSunHorizonFill className="text-8xl text-[#a7a7a7] mb-4" />,
-        isha: <FaMoon className="text-8xl text-[#a7a7a7] mb-4" />,
+        fajr: <PiSunHorizonLight className="text-9xl mb-4" />,
+        sunrise: <HiOutlineSun className="text-9xl mb-4" />,
+        dhuhr: <AiFillSun className="text-9xl mb-4" />,
+        asr: <LuCloudSun className="text-9xl mb-4" />,
+        maghrib: <PiSunHorizonFill className="text-9xl mb-4" />,
+        isha: <FaMoon className="text-9xl mb-4" />,
     };
 
     useEffect(() => {
@@ -120,15 +122,12 @@ const QubePrayerTime = () => {
     const [hours, minutes, seconds] = currentTime.split(":");
 
     return (
-        <div className="flex flex-col items-center p-12 space-y-64">
+        <div className="flex flex-col items-center p-12 space-y-64 relative">
+            {/* Aktuelles Datum (Sonnen & Mond Kalender) */}
+            <DateBoxes prayerTimes={prayerTimes} />
 
             {/* Aktuelle Uhrzeit */}
-            <div className="text-center flex items-baseline space-x-2 text-9xl font-bold mb-8">
-                <span className="text-white text-32xl">{hours}</span>
-                <span className="text-white text-32xl">:</span>
-                <span className="text-white text-32xl">{minutes}</span>
-                <span className="text-white text-12xl">{seconds}</span>
-            </div>
+            <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
 
             {/* Gebetszeiten */}
             <div className="flex justify-center items-center space-x-12">
@@ -140,23 +139,29 @@ const QubePrayerTime = () => {
                                 {isActive && (
                                     <div className="absolute -top-44 w-box">
                                         <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
-                                        <div className="h-8 relative bg-[#00a480] w-full rounded-3xl overflow-hidden">
+                                        <div className="h-8 relative bg-[#009972] w-full rounded-3xl overflow-hidden">
                                             <div
                                                 className="bg-[#4b4b4b] h-full"
-                                                style={{width: `${progressPercentage}%`}}
+                                                style={{ width: `${progressPercentage}%` }}
                                             ></div>
                                         </div>
                                     </div>
                                 )}
                                 <div
                                     className={`w-box h-box flex flex-col justify-center items-center rounded-3xl shadow-lg ${
-                                        isActive ? "bg-[#049c74]" : "bg-[#343434]"
+                                        isActive ? "bg-[#009972]" : "bg-[#343434]"
                                     }`}
                                 >
-                                    {icons[key]}
-                                    <span className="text-[#a7a7a7] text-6xl mb-4">{titles[key]}</span>
-                                    <span className="text-[#a7a7a7] text-9xl font-bold">{label}</span>
-                                    <span className="text-[#a7a7a7] text-8xl font-bold mt-4">
+                                    <div className={`text-8xl mb-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                        {icons[key]}
+                                    </div>
+                                    <span className={`text-6xl mb-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                        {titles[key]}
+                                    </span>
+                                    <span className={`text-9xl font-bold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                        {label}
+                                    </span>
+                                    <span className={`text-9xl font-bold mt-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                         {prayerTimes[key as keyof PrayerTimes] || "00:00"}
                                     </span>
                                 </div>
@@ -166,6 +171,7 @@ const QubePrayerTime = () => {
             </div>
         </div>
     );
+
 };
 
 export default QubePrayerTime;
