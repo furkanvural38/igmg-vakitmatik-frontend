@@ -30,8 +30,8 @@ html, body, #root {
   overflow: hidden;
 }
 
-.border-7 {
-  border-width: 7px;
+.border-5 {
+  border-width: 5px;
 }
 
 .height-25{
@@ -51,7 +51,7 @@ html, body, #root {
 }
 
 .text-header {
-  font-size: 160px;
+  font-size: 170px;
 }
 
 .text-10xl {
@@ -60,7 +60,7 @@ html, body, #root {
 }
 
 .rounded-footer {
-  border-radius: 8rem/* 24px */;
+  border-radius: 4rem/* 24px */;
 }
 
 .rounded-header {
@@ -82,12 +82,12 @@ html, body, #root {
 .min-w-800 {
   min-width: 375px;
 }
-.h-800 {
-  height: 600px;
+.h-footer {
+  height: 400px;
 }
 
 .h-400 {
-  height: 400px;
+  height: 300px;
 }
 
 .h-300 {
@@ -138,14 +138,18 @@ html, body, #root {
   background: rgb(0, 0, 0)
 }
 
-.backgroundQubeActive {
-  background: #14614d; /* Wichtiger Stil für Vorrang */
-}
-
-.backgroundQubeDeactive {
-  background: #343434; /* Wichtiger Stil für Vorrang */
-}
-
 /* Box for PrayerTime */
-.w-box {     width: 32rem/* 384px */; }
-.h-box {     height: 40rem/* 384px */; }
+.w-box {
+  width: 30rem/* 384px */;
+}
+.h-box {
+  height: 34rem/* 384px */;
+}
+
+.text-clock {
+  font-size: 500px;
+}
+
+.text-seconds {
+  font-size: 200px;
+}

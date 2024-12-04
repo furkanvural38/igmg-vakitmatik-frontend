@@ -122,15 +122,21 @@ const QubePrayerTime = () => {
     const [hours, minutes, seconds] = currentTime.split(":");
 
     return (
-        <div className="flex flex-col items-center p-12 space-y-64 relative">
-            {/* Aktuelles Datum (Sonnen & Mond Kalender) */}
-            <DateBoxes prayerTimes={prayerTimes} />
+        <div className="relative">
+            <div className="flex items-center justify-center">
+                {/* Aktuelles Datum (Sonnen & Mond Kalender) */}
+                <div className="absolute left-0">
+                    <DateBoxes prayerTimes={prayerTimes} />
+                </div>
 
-            {/* Aktuelle Uhrzeit */}
-            <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
+                {/* Aktuelle Uhrzeit */}
+                <div className="text-center">
+                    <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
+                </div>
+            </div>
 
             {/* Gebetszeiten */}
-            <div className="flex justify-center items-center space-x-12">
+            <div className="flex justify-center items-center space-x-16">
                 {prayerTimes &&
                     Object.entries(prayerLabels).map(([key, label]) => {
                         const isActive = key === currentPrayer;
@@ -156,14 +162,14 @@ const QubePrayerTime = () => {
                                         {icons[key]}
                                     </div>
                                     <span className={`text-6xl mb-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
-                                        {titles[key]}
-                                    </span>
+                                    {titles[key]}
+                                </span>
                                     <span className={`text-9xl font-bold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
-                                        {label}
-                                    </span>
+                                    {label}
+                                </span>
                                     <span className={`text-9xl font-bold mt-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
-                                        {prayerTimes[key as keyof PrayerTimes] || "00:00"}
-                                    </span>
+                                    {prayerTimes[key as keyof PrayerTimes] || "00:00"}
+                                </span>
                                 </div>
                             </div>
                         );
@@ -171,6 +177,7 @@ const QubePrayerTime = () => {
             </div>
         </div>
     );
+
 
 };
 
