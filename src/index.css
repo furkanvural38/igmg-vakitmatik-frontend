@@ -114,7 +114,7 @@ html, body, #root {
 }
 
 .preventBurnInHue {
-  animation: hueRotate 250s linear infinite;
+
 }
 
 @keyframes hueRotate {
@@ -146,3 +146,6 @@ html, body, #root {
   background: #343434; /* Wichtiger Stil für Vorrang */
 }
 
+/* Box for PrayerTime */
+.w-box {     width: 32rem/* 384px */; }
+.h-box {     height: 40rem/* 384px */; }
