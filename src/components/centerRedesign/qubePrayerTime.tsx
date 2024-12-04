@@ -2,6 +2,12 @@ import { useState, useEffect } from "react";
 import { PrayerTimes, PrayerTimesApiResponse } from "../center/types.ts";
 import { fetchDailyPrayerTime } from "../center/service.tsx";
 import useChangeTitle from "../center/prayerTimeAndClockCenter/useChangeTitle.tsx";
+import { FaMoon } from "react-icons/fa";
+import { HiOutlineSun } from "react-icons/hi";
+import { AiFillSun } from "react-icons/ai";
+import { PiSunHorizonFill, PiSunHorizonLight  } from "react-icons/pi";
+import { LuCloudSun } from "react-icons/lu";
+import useCurrentTime from "../center/currentTimeRight/useCurrentTime.tsx";
 
 // Hilfsfunktion: Zeit in Minuten umrechnen
 const timeToMinutes = (time: string): number => {
@@ -25,7 +31,6 @@ const calculateTimeDifference = (currentMinutes: number, nextMinutes: number): J
     );
 };
 
-
 // Methode zur Berechnung des Prozentsatzes
 const calculateProgressPercentage = (currentMinutes: number, startMinutes: number, endMinutes: number): number => {
     const totalSpan = (endMinutes - startMinutes + 1440) % 1440; // Zyklisch
@@ -41,6 +46,16 @@ const QubePrayerTime = () => {
     const [timeDifference, setTimeDifference] = useState<React.ReactNode>("Wird geladen...");
     const [progressPercentage, setProgressPercentage] = useState<number>(0);
     const titles = useChangeTitle();
+    const currentTime = useCurrentTime();
+
+    const icons: { [key: string]: JSX.Element } = {
+        fajr: <PiSunHorizonLight className="text-8xl text-[#a7a7a7] mb-4" />,
+        sunrise: <HiOutlineSun className="text-8xl text-[#a7a7a7] mb-4" />,
+        dhuhr: <AiFillSun className="text-8xl text-[#a7a7a7] mb-4" />,
+        asr: <LuCloudSun className="text-8xl text-[#a7a7a7] mb-4" />,
+        maghrib: <PiSunHorizonFill className="text-8xl text-[#a7a7a7] mb-4" />,
+        isha: <FaMoon className="text-8xl text-[#a7a7a7] mb-4" />,
+    };
 
     useEffect(() => {
         const loadData = async () => {
@@ -111,8 +126,8 @@ const QubePrayerTime = () => {
                         <div key={key} className="relative">
                             {/* Progressbar und verbleibende Zeit außerhalb der Box */}
                             {isActive && (
-                                <div className="absolute -top-36 w-box">
-                                    <div className="text-center text-white mb-4 text-7xl">{timeDifference}</div>
+                                <div className="absolute -top-44 w-box">
+                                    <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
                                     <div className="h-8 relative h-6 bg-[#00a480] w-full rounded-3xl overflow-hidden">
                                         <div
                                             className="bg-[#4b4b4b] h-full"
@@ -127,6 +142,7 @@ const QubePrayerTime = () => {
                                     isActive ? "bg-[#049c74]" : "bg-[#343434]"
                                 }`}
                             >
+                                {icons[key]}
                                 <span className="text-[#a7a7a7] text-6xl mb-4">{titles[key]}</span>
                                 <span className="text-[#a7a7a7] text-9xl font-bold">{label}</span>
                                 <span
