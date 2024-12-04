@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
+import useCurrentTime from "../center/currentTimeRight/useCurrentTime.tsx" // Dein `useCurrentTime`-Hook
 import { PrayerTimes, PrayerTimesApiResponse } from "../center/types.ts";
 import { fetchDailyPrayerTime } from "../center/service.tsx";
 import useChangeTitle from "../center/prayerTimeAndClockCenter/useChangeTitle.tsx";
 import { FaMoon } from "react-icons/fa";
 import { HiOutlineSun } from "react-icons/hi";
 import { AiFillSun } from "react-icons/ai";
-import { PiSunHorizonFill, PiSunHorizonLight  } from "react-icons/pi";
+import { PiSunHorizonFill, PiSunHorizonLight } from "react-icons/pi";
 import { LuCloudSun } from "react-icons/lu";
-import useCurrentTime from "../center/currentTimeRight/useCurrentTime.tsx";
 
 // Hilfsfunktion: Zeit in Minuten umrechnen
 const timeToMinutes = (time: string): number => {
@@ -45,8 +45,8 @@ const QubePrayerTime = () => {
     const [nextPrayer, setNextPrayer] = useState<string | null>(null);
     const [timeDifference, setTimeDifference] = useState<React.ReactNode>("Wird geladen...");
     const [progressPercentage, setProgressPercentage] = useState<number>(0);
+    const currentTime = useCurrentTime(); // Aktuelle Zeit vom Hook
     const titles = useChangeTitle();
-    const currentTime = useCurrentTime();
 
     const icons: { [key: string]: JSX.Element } = {
         fajr: <PiSunHorizonLight className="text-8xl text-[#a7a7a7] mb-4" />,
@@ -117,40 +117,53 @@ const QubePrayerTime = () => {
         isha: "Yatsı",
     };
 
+    const [hours, minutes, seconds] = currentTime.split(":");
+
     return (
-        <div className="flex justify-center items-center p-12 space-x-12">
-            {prayerTimes &&
-                Object.entries(prayerLabels).map(([key, label]) => {
-                    const isActive = key === currentPrayer;
-                    return (
-                        <div key={key} className="relative">
-                            {/* Progressbar und verbleibende Zeit außerhalb der Box */}
-                            {isActive && (
-                                <div className="absolute -top-44 w-box">
-                                    <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
-                                    <div className="h-8 relative h-6 bg-[#00a480] w-full rounded-3xl overflow-hidden">
-                                        <div
-                                            className="bg-[#4b4b4b] h-full"
-                                            style={{ width: `${progressPercentage}%` }}
-                                        ></div>
+        <div className="flex flex-col items-center p-12 space-y-64">
+
+            {/* Aktuelle Uhrzeit */}
+            <div className="text-center flex items-baseline space-x-2 text-9xl font-bold mb-8">
+                <span className="text-white text-32xl">{hours}</span>
+                <span className="text-white text-32xl">:</span>
+                <span className="text-white text-32xl">{minutes}</span>
+                <span className="text-white text-12xl">{seconds}</span>
+            </div>
+
+            {/* Gebetszeiten */}
+            <div className="flex justify-center items-center space-x-12">
+                {prayerTimes &&
+                    Object.entries(prayerLabels).map(([key, label]) => {
+                        const isActive = key === currentPrayer;
+                        return (
+                            <div key={key} className="relative">
+                                {isActive && (
+                                    <div className="absolute -top-44 w-box">
+                                        <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
+                                        <div className="h-8 relative bg-[#00a480] w-full rounded-3xl overflow-hidden">
+                                            <div
+                                                className="bg-[#4b4b4b] h-full"
+                                                style={{width: `${progressPercentage}%`}}
+                                            ></div>
+                                        </div>
                                     </div>
+                                )}
+                                <div
+                                    className={`w-box h-box flex flex-col justify-center items-center rounded-3xl shadow-lg ${
+                                        isActive ? "bg-[#049c74]" : "bg-[#343434]"
+                                    }`}
+                                >
+                                    {icons[key]}
+                                    <span className="text-[#a7a7a7] text-6xl mb-4">{titles[key]}</span>
+                                    <span className="text-[#a7a7a7] text-9xl font-bold">{label}</span>
+                                    <span className="text-[#a7a7a7] text-8xl font-bold mt-4">
+                                        {prayerTimes[key as keyof PrayerTimes] || "00:00"}
+                                    </span>
                                 </div>
-                            )}
-                            {/* Box für Gebetszeit */}
-                            <div
-                                className={`w-box h-box flex flex-col justify-center items-center rounded-3xl shadow-lg ${
-                                    isActive ? "bg-[#049c74]" : "bg-[#343434]"
-                                }`}
-                            >
-                                {icons[key]}
-                                <span className="text-[#a7a7a7] text-6xl mb-4">{titles[key]}</span>
-                                <span className="text-[#a7a7a7] text-9xl font-bold">{label}</span>
-                                <span
-                                    className="text-[#a7a7a7] text-8xl font-bold mt-4">{prayerTimes[key as keyof PrayerTimes] || "00:00"}</span>
                             </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+            </div>
         </div>
     );
 };
