@@ -10,13 +10,13 @@ const DateBoxes: React.FC<DateBoxesProps> = ({ prayerTimes }) => {
         <div>
             {/* Sonnenkalender */}
             <div className="bg-[#009972] p-6 shadow-md text-white text-center mb-8 rounded-3xl">
-                <div className="text-7xl font-bold mt-2">
+                <div className="text-8xl font-bold mt-2">
                     {prayerTimes?.gregorianDateShort || "Lädt..."}
                 </div>
             </div>
             {/* Mondkalender */}
             <div className="bg-transparent border-white border p-6 rounded-3xl shadow-md text-white text-center">
-                <div className="text-7xl mt-2">
+                <div className="text-8xl mt-2">
                     {prayerTimes?.hijriDateLong || "Lädt..."}
                 </div>
             </div>

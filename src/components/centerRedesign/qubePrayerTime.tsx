@@ -26,7 +26,7 @@ const calculateTimeDifference = (currentMinutes: number, nextMinutes: number): J
     return (
         <span>
             <span className="font-bold">{hours}</span>
-            <span>h </span>
+            <span>h</span>
             <span className="font-bold">{minutes}</span>
             <span>min</span>
         </span>
@@ -123,14 +123,14 @@ const QubePrayerTime = () => {
 
     return (
         <div className="relative">
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center mb-4">
                 {/* Aktuelles Datum (Sonnen & Mond Kalender) */}
                 <div className="absolute left-0">
                     <DateBoxes prayerTimes={prayerTimes} />
                 </div>
 
                 {/* Aktuelle Uhrzeit */}
-                <div className="text-center">
+                <div className="text-center scale-y-125 scale-x-125">
                     <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
                 </div>
             </div>
@@ -143,11 +143,11 @@ const QubePrayerTime = () => {
                         return (
                             <div key={key} className="relative">
                                 {isActive && (
-                                    <div className="absolute -top-44 w-box">
+                                    <div className="absolute -top-40 w-box">
                                         <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
                                         <div className="h-8 relative bg-[#009972] w-full rounded-3xl overflow-hidden">
                                             <div
-                                                className="bg-[#4b4b4b] h-full"
+                                                className="bg-[#4b4b4b] rounded-3xl h-full"
                                                 style={{ width: `${progressPercentage}%` }}
                                             ></div>
                                         </div>
@@ -161,13 +161,13 @@ const QubePrayerTime = () => {
                                     <div className={`text-8xl mb-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                         {icons[key]}
                                     </div>
-                                    <span className={`text-6xl mb-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                    <span className={`text-6xl mb-6 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                     {titles[key]}
                                 </span>
                                     <span className={`text-9xl font-bold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                     {label}
                                 </span>
-                                    <span className={`text-9xl font-bold mt-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                    <span className={`text-time font-bold mt-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                     {prayerTimes[key as keyof PrayerTimes] || "00:00"}
                                 </span>
                                 </div>

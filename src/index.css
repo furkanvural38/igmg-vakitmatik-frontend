@@ -140,7 +140,7 @@ html, body, #root {
 
 /* Box for PrayerTime */
 .w-box {
-  width: 30rem/* 384px */;
+  width: 32rem/* 384px */;
 }
 .h-box {
   height: 34rem/* 384px */;
@@ -151,5 +151,10 @@ html, body, #root {
 }
 
 .text-seconds {
-  font-size: 200px;
+  font-size: 300px;
+}
+
+.text-time {
+  font-size: 10rem/* 128px */;
+  line-height: 1;
 }

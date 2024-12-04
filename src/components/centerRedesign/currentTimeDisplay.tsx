@@ -12,7 +12,7 @@ const CurrentTimeDisplay: React.FC<CurrentTimeDisplayProps> = ({ hours, minutes,
             <span className="text-white font-bebas text-clock">{hours}</span>
             <span className="text-white font-bebas text-clock">:</span>
             <span className="text-white font-bebas text-clock">{minutes}</span>
-            <span className="text-white font-bebas text-seconds ml-1">{seconds}</span>
+            <span className="text-white font-bebas text-seconds ml-2">{seconds}</span>
         </div>
     );
 };

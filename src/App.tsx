@@ -8,7 +8,7 @@ function App() {
             <div className="flex-shrink-0 mt-8 preventBurnInMove mr-16 ml-16">
                 <Header />
             </div>
-            <main className="mb-8 mr-8 ml-8 flex-grow flex flex-col items-center justify-center preventBurnInMove">
+            <main className="flex-grow flex flex-col items-center justify-center preventBurnInMove">
                 <QubePrayerTime />
             </main>
             <footer className="flex-shrink-0 mb-8 preventBurnInMove mr-16 ml-16">
