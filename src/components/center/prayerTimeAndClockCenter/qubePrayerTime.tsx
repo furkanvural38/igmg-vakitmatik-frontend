@@ -133,7 +133,7 @@ const QubePrayerTime = () => {
     const [hours, minutes, seconds] = currentTime.split(":");
 
     return (
-        <div className="relative">
+        <div className="relative w-full">
             <div className="flex items-center justify-center mb-4">
                 {/* Aktuelles Datum (Sonnen & Mond Kalender) */}
                 <div className="absolute left-0">
@@ -147,12 +147,12 @@ const QubePrayerTime = () => {
             </div>
 
             {/* Gebetszeiten */}
-            <div className="flex justify-center items-center space-x-16">
+            <div className="flex justify-center items-center space-x-28">
                 {prayerTimes &&
                     Object.entries(prayerLabels).map(([key, label]) => {
                         const isActive = key === currentPrayer;
                         return (
-                            <div key={key} className="relative">
+                            <div key={key} className="relative w-full">
                                 {isActive && (
                                     <div className="absolute -top-40 w-box">
                                         <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
