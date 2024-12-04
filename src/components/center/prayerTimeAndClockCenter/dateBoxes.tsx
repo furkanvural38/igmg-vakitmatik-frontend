@@ -1,5 +1,5 @@
 import React from "react";
-import { PrayerTimes } from "../center/types.ts";
+import { PrayerTimes } from "../types.ts";
 
 interface DateBoxesProps {
     prayerTimes: PrayerTimes | null;

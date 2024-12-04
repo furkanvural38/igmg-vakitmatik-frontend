@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import useCurrentTime from "../center/currentTimeRight/useCurrentTime.tsx" // Dein `useCurrentTime`-Hook
-import { PrayerTimes, PrayerTimesApiResponse } from "../center/types.ts";
-import { fetchDailyPrayerTime } from "../center/service.tsx";
-import useChangeTitle from "../center/prayerTimeAndClockCenter/useChangeTitle.tsx";
+import useCurrentTime from "../currentTimeRight/useCurrentTime.tsx" // Dein `useCurrentTime`-Hook
+import { PrayerTimes, PrayerTimesApiResponse } from "../types.ts";
+import { fetchDailyPrayerTime } from "../service.tsx";
+import useChangeTitle from "./useChangeTitle.tsx";
 import { FaMoon } from "react-icons/fa6";
 import { HiOutlineSun } from "react-icons/hi";
 import { AiFillSun } from "react-icons/ai";
@@ -44,7 +44,6 @@ const calculateProgressPercentage = (currentMinutes: number, startMinutes: numbe
 const QubePrayerTime = () => {
     const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
     const [currentPrayer, setCurrentPrayer] = useState<string | null>(null);
-    const [nextPrayer, setNextPrayer] = useState<string | null>(null);
     const [timeDifference, setTimeDifference] = useState<React.ReactNode>("Wird geladen...");
     const [progressPercentage, setProgressPercentage] = useState<number>(0);
     const currentTime = useCurrentTime(); // Aktuelle Zeit vom Hook
@@ -77,6 +76,19 @@ const QubePrayerTime = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+
+            if (hours === 0 && minutes === 2) {
+                window.location.reload();
+            }
+        }, 60000);
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
             if (prayerTimes) {
                 const currentTime = new Date();
                 const currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes();
@@ -97,7 +109,6 @@ const QubePrayerTime = () => {
                 if (current === -1) current = times.length - 1;
 
                 setCurrentPrayer(keys[current]);
-                setNextPrayer(keys[(current + 1) % times.length]);
 
                 const startMinutes = times[current].minutes;
                 const endMinutes = times[(current + 1) % times.length].minutes;

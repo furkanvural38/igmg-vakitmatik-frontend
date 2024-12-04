@@ -87,16 +87,13 @@ html, body, #root {
 }
 
 .h-400 {
-  height: 300px;
+  height: 400px;
 }
 
 .h-300 {
   height: 300px;
 }
 
-.h-500 {
-  height: 400px;
-}
 
 .separator {
   width: 1px; /* Breite der Linie */

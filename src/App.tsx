@@ -1,6 +1,6 @@
 import Header from '../src/components/header/header';
 import Footer from '../src/components/footer/footer';
-import QubePrayerTime from "./components/centerRedesign/qubePrayerTime.tsx";
+import QubePrayerTime from "./components/center/prayerTimeAndClockCenter/qubePrayerTime.tsx";
 
 function App() {
     return (
