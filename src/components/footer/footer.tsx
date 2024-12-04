@@ -36,7 +36,7 @@ function Footer() {
 
     return (
         <footer
-            className="flex items-center bg-[#343433] bg-opacity-50 text-white rounded-footer h-footer ml-8 mr-8">
+            className="flex items-center bg-[#343434] bg-opacity-20 text-white rounded-footer h-footer ml-8 mr-8">
             <div className="flex-shrink-0 ml-2 border-r border-white">
                 <img src={image} alt="igmg-logo" className="h-400" />
             </div>
@@ -44,7 +44,7 @@ function Footer() {
                 className="flex-grow items-center justify-center rounded-2xl ml-10 mr-4 h-400 flex overflow-hidden"
                 ref={handleScrollContainerRef}>
                 <div className="text-center pt-5">
-                    <p className="text-8xl h-400 grid place-items-center" ref={handleContentRef}>
+                    <p className="text-footer h-400 grid place-items-center" ref={handleContentRef}>
                         {text}
                     </p>
                 </div>

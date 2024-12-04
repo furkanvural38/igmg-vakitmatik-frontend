@@ -9,21 +9,21 @@ interface PrayerTitle {
 // Erstelle eine Liste der Titelpaare
 const prayerTitles: { [key: string]: PrayerTitle } = {
     fajr: { arabic: 'الصلاة الفجر', latin: 'Fajr' },
-    shuruq: { arabic: 'الشروق', latin: 'Shuruq' },
+    sunrise: { arabic: 'الشروق', latin: 'Shuruq' },
     dhuhr: { arabic: 'الصلاة الظهر', latin: 'Dhuhr' },
     asr: { arabic: 'الصلاة العصر', latin: 'Asr' },
     maghrib: { arabic: 'الصلاة المغرب', latin: 'Maghrib' },
-    ishaa: { arabic: 'الصلاة العشاء', latin: 'Isha\'a' },
+    isha: { arabic: 'الصلاة العشاء', latin: 'Isha\'a' },
 };
 
 const useChangeTitle = () => {
     const [currentTitles, setCurrentTitles] = useState<{ [key: string]: string }>({
         fajr: prayerTitles.fajr.arabic,
-        shuruq: prayerTitles.shuruq.arabic,
+        sunrise: prayerTitles.sunrise.arabic,
         dhuhr: prayerTitles.dhuhr.arabic,
         asr: prayerTitles.asr.arabic,
         maghrib: prayerTitles.maghrib.arabic,
-        ishaa: prayerTitles.ishaa.arabic,
+        isha: prayerTitles.isha.arabic,
     });
 
     useEffect(() => {

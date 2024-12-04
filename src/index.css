@@ -83,7 +83,7 @@ html, body, #root {
   min-width: 375px;
 }
 .h-footer {
-  height: 400px;
+  height: 450px;
 }
 
 .h-400 {
@@ -113,16 +113,6 @@ html, body, #root {
   letter-spacing: 12px;
 }
 
-.preventBurnInHue {
-
-}
-
-@keyframes hueRotate {
-  0% { filter: hue-rotate(25deg) grayscale(0); }
-  25% { filter: hue-rotate(-25deg) grayscale(0); }
-  75% { filter: hue-rotate(-25deg) grayscale(0); }
-  100% { filter: hue-rotate(25deg) grayscale(0); }
-}
 
 .preventBurnInMove {
   animation: move 100s forwards infinite;
@@ -135,7 +125,7 @@ html, body, #root {
 }
 
 .background {
-  background: rgb(0, 0, 0)
+  background: black
 }
 
 /* Box for PrayerTime */
@@ -157,4 +147,14 @@ html, body, #root {
 .text-time {
   font-size: 10rem/* 128px */;
   line-height: 1;
+}
+
+.text-date {
+  font-size: 5rem/* 72px */;
+  line-height: 1;
+}
+
+.text-footer {
+  font-size: 7rem/* 96px */;
+  line-height: 1
 }

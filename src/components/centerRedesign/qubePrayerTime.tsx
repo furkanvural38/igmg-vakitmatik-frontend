@@ -3,7 +3,7 @@ import useCurrentTime from "../center/currentTimeRight/useCurrentTime.tsx" // De
 import { PrayerTimes, PrayerTimesApiResponse } from "../center/types.ts";
 import { fetchDailyPrayerTime } from "../center/service.tsx";
 import useChangeTitle from "../center/prayerTimeAndClockCenter/useChangeTitle.tsx";
-import { FaMoon } from "react-icons/fa";
+import { FaMoon } from "react-icons/fa6";
 import { HiOutlineSun } from "react-icons/hi";
 import { AiFillSun } from "react-icons/ai";
 import { PiSunHorizonFill, PiSunHorizonLight } from "react-icons/pi";
@@ -26,7 +26,7 @@ const calculateTimeDifference = (currentMinutes: number, nextMinutes: number): J
     return (
         <span>
             <span className="font-bold">{hours}</span>
-            <span>h</span>
+            <span>h </span>
             <span className="font-bold">{minutes}</span>
             <span>min</span>
         </span>
