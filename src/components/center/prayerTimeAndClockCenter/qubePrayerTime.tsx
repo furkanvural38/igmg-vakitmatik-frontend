@@ -10,7 +10,6 @@ import { PiSunHorizonFill, PiSunHorizonLight } from "react-icons/pi";
 import { LuCloudSun } from "react-icons/lu";
 import DateBoxes from "./dateBoxes.tsx";
 import CurrentTimeDisplay from "./currentTimeDisplay.tsx";
-import WeatherOverview from "./weatherOverview.tsx";
 
 // Hilfsfunktion: Zeit in Minuten umrechnen
 const timeToMinutes = (time: string): number => {
