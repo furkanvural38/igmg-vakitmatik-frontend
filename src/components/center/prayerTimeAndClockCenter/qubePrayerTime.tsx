@@ -146,10 +146,6 @@ const QubePrayerTime = () => {
                     <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
                 </div>
 
-                {/* Aktuelles Wetter */}
-                <div className="absolute right-0">
-                    <WeatherOverview  />
-                </div>
             </div>
 
             {/* Gebetszeiten */}
