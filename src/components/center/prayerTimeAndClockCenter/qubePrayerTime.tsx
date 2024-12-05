@@ -175,7 +175,7 @@ const QubePrayerTime = () => {
                                     <span className={`text-6xl mb-6 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                     {titles[key]}
                                 </span>
-                                    <span className={`text-9xl font-bold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                    <span className={`text-8xl font-bold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                     {label}
                                 </span>
                                     <span className={`text-time font-bold mt-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
