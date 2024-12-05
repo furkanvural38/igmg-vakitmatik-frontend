@@ -1,6 +1,7 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, screen } from 'electron'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+
 
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -25,15 +26,34 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, 
 
 let win: BrowserWindow | null
 
+
 function createWindow() {
+  const primaryDisplay = screen.getPrimaryDisplay();
+
+  // Zielauflösung (4K)
+  const targetResolution = { width: 3840, height: 2160 };
+
+  // Aktuelle Bildschirmauflösung
+  const currentResolution = primaryDisplay.size;
+
+  // Berechnung des Zoom-Faktors
+  const widthRatio = currentResolution.width / targetResolution.width;
+  const heightRatio = currentResolution.height / targetResolution.height;
+
+  // Nimm den kleineren Faktor, um Verzerrungen zu vermeiden
+  const zoomFactor = Math.min(widthRatio, heightRatio);
+
+
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
+      zoomFactor: zoomFactor
     },
     fullscreen: true,
     autoHideMenuBar: true
   })
+
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
