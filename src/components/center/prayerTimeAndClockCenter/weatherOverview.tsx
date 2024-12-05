@@ -80,7 +80,7 @@ const WeatherTile: React.FC = () => {
 
     return (
         <div
-            className="flex flex-col items-center justify-center w-box h-box gradient-bg text-white shadow-md mr-2 rounded-3xl"
+            className="flex flex-col items-center justify-center w-box h-box gradient-bg text-white shadow-md mr-2 rounded-3xl mb-28"
             style={{ width: "32rem", height: "34rem" }}
         >
             <h2 className="text-8xl font-bold">{name}</h2>
