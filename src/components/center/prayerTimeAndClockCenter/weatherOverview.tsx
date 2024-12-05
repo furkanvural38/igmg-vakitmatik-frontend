@@ -39,6 +39,7 @@ const WeatherTile: React.FC = () => {
 
             const data = await response.json();
             setWeatherData(data);
+            setError(null); // Reset error on successful fetch
         } catch (error) {
             setError((error as Error).message);
         } finally {
@@ -58,27 +59,20 @@ const WeatherTile: React.FC = () => {
     }, []);
 
     if (isLoading) {
-        return (
-            <div className="flex justify-center items-center h-400 w-400 bg-gray-800 text-white">
-                <p>Loading...</p>
-            </div>
-        );
+        return <p>Loading...</p>; // Show loading text during initial fetch
     }
 
     if (error) {
+        // Show error message but allow the component to update once data is fetched
         return (
-            <div className="flex justify-center items-center h-400 w-400 bg-gray-800 text-white">
-                <p>Error: {error}</p>
+            <div className="text-center text-white">
+                <p>{}</p>
             </div>
         );
     }
 
     if (!weatherData) {
-        return (
-            <div className="flex justify-center items-center h-400 w-400 bg-gray-800 text-white">
-                <p>No data available.</p>
-            </div>
-        );
+        return <p>No weather data available.</p>; // Handle case when there's no data
     }
 
     const { name, main, weather } = weatherData;
@@ -86,13 +80,12 @@ const WeatherTile: React.FC = () => {
 
     return (
         <div
-            className="flex flex-col items-center justify-center w-box h-box gradient-bg text-white shadow-md mr-10 rounded-3xl"
+            className="flex flex-col items-center justify-center w-box h-box gradient-bg text-white shadow-md mr-2 rounded-3xl"
             style={{ width: "32rem", height: "34rem" }}
         >
             <h2 className="text-8xl font-bold">{name}</h2>
             <img src={weatherIcon} alt="Weather Icon" className="w-64 h-64" />
             <div className="">
-                {/* Format temperature to show only the whole number */}
                 <p className="text-9xl">{Math.round(main.temp)}°C</p>
             </div>
         </div>
