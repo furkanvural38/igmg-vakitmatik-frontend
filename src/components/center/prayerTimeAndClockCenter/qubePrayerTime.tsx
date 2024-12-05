@@ -141,7 +141,7 @@ const QubePrayerTime = () => {
                 </div>
 
                 {/* Aktuelle Uhrzeit */}
-                <div className="text-center scale-y-125 scale-x-125">
+                <div className="text-center scale-y-125 scale-x-150">
                     <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
                 </div>
             </div>
