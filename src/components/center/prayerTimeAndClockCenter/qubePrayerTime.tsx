@@ -154,7 +154,7 @@ const QubePrayerTime = () => {
                         return (
                             <div key={key} className="relative w-full">
                                 {isActive && (
-                                    <div className="absolute -top-40 w-box">
+                                    <div className="absolute -top-44 w-box">
                                         <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
                                         <div className="h-8 relative bg-[#009972] w-full rounded-3xl overflow-hidden">
                                             <div
