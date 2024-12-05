@@ -36,7 +36,7 @@ function Footer() {
 
     return (
         <footer
-            className="flex items-center bg-[#343434] text-white rounded-footer h-footer">
+            className="flex items-center bg-[#343434] text-white rounded-3xl h-footer">
             <div className="flex-shrink-0 ml-2 border-r border-white">
                 <img src={image} alt="igmg-logo" className="h-400" />
             </div>
