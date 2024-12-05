@@ -156,7 +156,7 @@ const QubePrayerTime = () => {
                                 {isActive && (
                                     <div className="absolute -top-44 w-box">
                                         <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
-                                        <div className="h-8 relative bg-[#009972] w-full rounded-3xl overflow-hidden">
+                                        <div className="h-8 relative bg-[#004731] w-full rounded-3xl overflow-hidden">
                                             <div
                                                 className="bg-[#4b4b4b] rounded-3xl h-full"
                                                 style={{ width: `${progressPercentage}%` }}
@@ -166,7 +166,7 @@ const QubePrayerTime = () => {
                                 )}
                                 <div
                                     className={`w-box h-box flex flex-col justify-center items-center rounded-3xl shadow-lg ${
-                                        isActive ? "bg-[#009972]" : "bg-[#343434]"
+                                        isActive ? "bg-[#004731]" : "bg-[#343434]"
                                     }`}
                                 >
                                     <div className={`text-8xl mb-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
