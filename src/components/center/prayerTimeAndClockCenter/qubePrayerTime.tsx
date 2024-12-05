@@ -10,6 +10,7 @@ import { PiSunHorizonFill, PiSunHorizonLight } from "react-icons/pi";
 import { LuCloudSun } from "react-icons/lu";
 import DateBoxes from "./dateBoxes.tsx";
 import CurrentTimeDisplay from "./currentTimeDisplay.tsx";
+import WeatherOverview from "./weatherOverview.tsx";
 
 // Hilfsfunktion: Zeit in Minuten umrechnen
 const timeToMinutes = (time: string): number => {
@@ -141,8 +142,13 @@ const QubePrayerTime = () => {
                 </div>
 
                 {/* Aktuelle Uhrzeit */}
-                <div className="text-center scale-y-125 scale-x-150">
+                <div className="text-center scale-y-110 scale-x-150">
                     <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
+                </div>
+
+                {/* Aktuelles Wetter */}
+                <div className="absolute right-0">
+                    <WeatherOverview  />
                 </div>
             </div>
 
@@ -156,17 +162,25 @@ const QubePrayerTime = () => {
                                 {isActive && (
                                     <div className="absolute -top-44 w-box">
                                         <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
-                                        <div className="h-8 relative bg-[#004731] w-full rounded-3xl overflow-hidden">
+                                        <div
+                                            className={`h-8 relative w-full rounded-3xl overflow-hidden ${
+                                                progressPercentage > 90 ? "bg-red-500" : "bg-[#009972]"
+                                            }`}
+                                        >
                                             <div
                                                 className="bg-[#4b4b4b] rounded-3xl h-full"
-                                                style={{ width: `${progressPercentage}%` }}
+                                                style={{width: `${progressPercentage}%`}}
                                             ></div>
                                         </div>
                                     </div>
                                 )}
                                 <div
                                     className={`w-box h-box flex flex-col justify-center items-center rounded-3xl shadow-lg ${
-                                        isActive ? "bg-[#004731]" : "bg-[#343434]"
+                                        isActive
+                                            ? progressPercentage > 90
+                                                ? "bg-red-600"
+                                                : "bg-[#009972]"
+                                            : "bg-[#343434]"
                                     }`}
                                 >
                                     <div className={`text-8xl mb-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
@@ -175,10 +189,12 @@ const QubePrayerTime = () => {
                                     <span className={`text-6xl mb-6 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                     {titles[key]}
                                 </span>
-                                    <span className={`text-8xl font-bold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                    <span
+                                        className={`text-8xl font-bold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                     {label}
                                 </span>
-                                    <span className={`text-time font-bold mt-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                    <span
+                                        className={`text-time font-bold mt-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                     {prayerTimes[key as keyof PrayerTimes] || "00:00"}
                                 </span>
                                 </div>

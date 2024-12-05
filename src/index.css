@@ -147,11 +147,22 @@ html, body, #root {
 }
 
 .text-date {
-  font-size: 5rem/* 72px */;
+  font-size: 6rem/* 72px */;
   line-height: 1;
 }
 
 .text-footer {
   font-size: 6.5rem/* 96px */;
   line-height: 1
+}
+
+.gradient-bg {
+  background: linear-gradient(
+          to bottom,
+          #006afe,
+          #0083ff,
+          #009efc,
+          #01c8ff,
+          #01ddff
+  );
 }
