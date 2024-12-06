@@ -25,9 +25,9 @@ const calculateTimeDifference = (currentMinutes: number, nextMinutes: number): J
 
     return (
         <span>
-            <span className="font-bold">{hours}</span>
+            <span className="font-semibold">{hours}</span>
             <span>h </span>
-            <span className="font-bold">{minutes}</span>
+            <span className="font-semibold">{minutes}</span>
             <span>min</span>
         </span>
     );
@@ -141,7 +141,7 @@ const QubePrayerTime = () => {
                 </div>
 
                 {/* Aktuelle Uhrzeit */}
-                <div className="text-center scale-y-110 scale-x-150">
+                <div className="text-center scale-y-110 scale-x-150 ml-96">
                     <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
                 </div>
 
@@ -185,11 +185,11 @@ const QubePrayerTime = () => {
                                     {titles[key]}
                                 </span>
                                     <span
-                                        className={`text-8xl font-bold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                        className={`text-8xl font-semibold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                     {label}
                                 </span>
                                     <span
-                                        className={`text-time font-bold mt-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                        className={`text-time font-semibold mt-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
                                     {prayerTimes[key as keyof PrayerTimes] || "00:00"}
                                 </span>
                                 </div>

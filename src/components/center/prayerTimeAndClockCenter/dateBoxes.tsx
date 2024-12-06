@@ -10,7 +10,7 @@ const DateBoxes: React.FC<DateBoxesProps> = ({ prayerTimes }) => {
         <div>
             {/* Sonnenkalender */}
             <div className="bg-[#009972] p-6 shadow-md text-white text-center mb-8 rounded-3xl">
-                <div className="text-date font-bold">
+                <div className="text-date font-semibold">
                     {prayerTimes?.gregorianDateShort || new Date().toLocaleDateString()}
                 </div>
             </div>

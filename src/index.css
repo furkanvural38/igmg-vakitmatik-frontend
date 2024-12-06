@@ -5,7 +5,7 @@
 
 /* Global Styles */
 :root {
-  @apply font-sans;
+  @apply font-clash;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -51,7 +51,7 @@ html, body, #root {
 }
 
 .text-header {
-  font-size: 170px;
+  font-size: 120px;
 }
 
 .text-10xl {
@@ -122,8 +122,15 @@ html, body, #root {
 }
 
 .background {
-  background: black
+  height: 100vh;
+  background: linear-gradient(
+          to bottom,
+          #000000, /* Schwarz */
+          #000503, /* Sehr dunkles Grün */
+          #00100A
+  );
 }
+
 
 /* Box for PrayerTime */
 .w-box {
@@ -166,3 +173,24 @@ html, body, #root {
           #01ddff
   );
 }
+
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/font/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/font/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: 600; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/font/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+

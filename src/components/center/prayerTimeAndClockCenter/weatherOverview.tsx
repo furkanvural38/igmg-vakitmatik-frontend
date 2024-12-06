@@ -83,7 +83,7 @@ const WeatherTile: React.FC = () => {
             className="flex flex-col items-center justify-center w-box h-box gradient-bg text-white shadow-md mr-2 rounded-3xl mb-28"
             style={{ width: "32rem", height: "34rem" }}
         >
-            <h2 className="text-8xl font-bold">{name}</h2>
+            <h2 className="text-8xl font-semibold">{name}</h2>
             <img src={weatherIcon} alt="Weather Icon" className="w-64 h-64" />
             <div className="">
                 <p className="text-9xl">{Math.round(main.temp)}°C</p>
