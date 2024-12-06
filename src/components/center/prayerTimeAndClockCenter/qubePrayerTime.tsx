@@ -147,7 +147,7 @@ const QubePrayerTime = () => {
                 </div>
 
                 {/* Wetteranzeige */}
-                <div className="right-0 mb-20">
+                <div className="right-0 mb-20 mr-2">
                     <WeatherTile/>
                 </div>
             </div>
