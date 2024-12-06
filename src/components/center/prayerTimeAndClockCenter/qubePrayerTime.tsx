@@ -134,15 +134,15 @@ const QubePrayerTime = () => {
 
     return (
         <div className="relative w-full">
-            <div className="flex items-center justify-center mb-4">
+            <div className="flex items-center justify-center mb-16 relative">
                 {/* Aktuelles Datum (Sonnen & Mond Kalender) */}
                 <div className="absolute left-0">
-                    <DateBoxes prayerTimes={prayerTimes} />
+                    <DateBoxes prayerTimes={prayerTimes}/>
                 </div>
 
                 {/* Aktuelle Uhrzeit */}
-                <div className="text-center scale-y-110 scale-x-150">
-                    <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
+                <div className="text-center pl-64 mb-4 ml-96">
+                    <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds}/>
                 </div>
 
             </div>

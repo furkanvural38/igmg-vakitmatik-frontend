@@ -5,7 +5,8 @@
 
 /* Global Styles */
 :root {
-  @apply font-sans;
+  @apply font-clash; /* Tailwind-Klasse für ClashDisplay */
+  font-family: 'ClashDisplay';
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -51,7 +52,7 @@ html, body, #root {
 }
 
 .text-header {
-  font-size: 170px;
+  font-size: 125px;
 }
 
 .text-10xl {
@@ -102,12 +103,8 @@ html, body, #root {
 }
 
 
-.font-bebas {
-  font-family: 'Bebas Neue', sans-serif;
-}
-
 .letter-spacing {
-  letter-spacing: 12px;
+  letter-spacing: 6px;
 }
 
 
@@ -121,10 +118,6 @@ html, body, #root {
   to   {  transform: rotate(360deg) translateX(20px) rotate(-360deg); }
 }
 
-.background {
-  background: black
-}
-
 /* Box for PrayerTime */
 .w-box {
   width: 32rem/* 384px */;
@@ -134,7 +127,7 @@ html, body, #root {
 }
 
 .text-clock {
-  font-size: 500px;
+  font-size: 400px;
 }
 
 .text-seconds {
@@ -165,4 +158,50 @@ html, body, #root {
           #01c8ff,
           #01ddff
   );
+}
+
+.background {
+  background: linear-gradient(
+          to bottom,
+          black,
+          #000502,
+          #000A05,
+          #00100A
+  );
+}
+
+
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/fonts/ClashDisplay-Semibold.otf') format('opentype');
+  font-weight: 600; /* Semibold */
+  font-style: normal; /* Standard Stil */
+}
+
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/fonts/ClashDisplay-Regular.otf') format('opentype');
+  font-weight: 400; /* Regular */
+  font-style: normal; /* Standard Stil */
+}
+
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/fonts/ClashDisplay-Light.otf') format('opentype');
+  font-weight: 300; /* Light */
+  font-style: normal; /* Standard Stil */
+}
+
+.time-unit {
+  font-feature-settings: "tnum"; /* Tabellarische Zahlen aktivieren */
+  font-variant-numeric: tabular-nums; /* Alternative zu font-feature-settings */
+  text-align: center; /* Zentriert die Zahlen */
+  display: inline-block; /* Fixiert die Breite */
+  min-width: 1.5em; /* Gleiche Breite für jede Zahl */
+}
+.time-separator {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  display: inline-block;
 }

@@ -8,11 +8,11 @@ interface CurrentTimeDisplayProps {
 
 const CurrentTimeDisplay: React.FC<CurrentTimeDisplayProps> = ({ hours, minutes, seconds }) => {
     return (
-        <div>
-            <span className="text-white font-bebas text-clock">{hours}</span>
-            <span className="text-white font-bebas text-clock">:</span>
-            <span className="text-white font-bebas text-clock">{minutes}</span>
-            <span className="text-white font-bebas text-seconds ml-2">{seconds}</span>
+        <div className="flex items-center justify-center">
+            <span className="text-white font-clash text-clock time-unit">{hours}</span>
+            <span className="text-white font-clash text-clock time-separator">:</span>
+            <span className="text-white font-clash text-clock time-unit">{minutes}</span>
+            <span className="text-white font-clash text-seconds time-unit">{seconds}</span>
         </div>
     );
 };

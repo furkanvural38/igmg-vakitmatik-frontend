@@ -1,12 +1,14 @@
-// tailwind.config.js
 module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: { },
+  theme: {
+    extend: {
+      fontFamily: {
+        clash: ['ClashDisplay'], // Benutzerdefinierte Schriftart hinzufügen
+      },
+    },
+  },
   plugins: [],
 };
-
-
-
