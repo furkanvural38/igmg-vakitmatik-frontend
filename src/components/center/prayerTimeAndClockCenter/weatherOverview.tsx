@@ -30,7 +30,7 @@ const WeatherTile: React.FC = () => {
     const fetchWeatherData = async () => {
         try {
             const response = await fetch(
-                "https://api.openweathermap.org/data/2.5/weather?q=Hannover&units=metric&appid=6847fff1ba1440395c9624c98a44f3f0"
+                "https://api.openweathermap.org/data/2.5/weather?q=Garbsen&units=metric&appid=6847fff1ba1440395c9624c98a44f3f0"
             );
 
             if (!response.ok) {

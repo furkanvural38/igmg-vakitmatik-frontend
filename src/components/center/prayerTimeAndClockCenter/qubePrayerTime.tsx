@@ -10,6 +10,7 @@ import { PiSunHorizonFill, PiSunHorizonLight } from "react-icons/pi";
 import { LuCloudSun } from "react-icons/lu";
 import DateBoxes from "./dateBoxes.tsx";
 import CurrentTimeDisplay from "./currentTimeDisplay.tsx";
+import WeatherTile from "./weatherOverview.tsx";
 
 // Hilfsfunktion: Zeit in Minuten umrechnen
 const timeToMinutes = (time: string): number => {
@@ -134,17 +135,21 @@ const QubePrayerTime = () => {
 
     return (
         <div className="relative w-full">
-            <div className="flex items-center justify-center mb-4">
+            <div className="flex items-center justify-between mb-4 w-full">
                 {/* Aktuelles Datum (Sonnen & Mond Kalender) */}
-                <div className="absolute left-0">
-                    <DateBoxes prayerTimes={prayerTimes} />
+                <div className="left-0">
+                    <DateBoxes prayerTimes={prayerTimes}/>
                 </div>
 
                 {/* Aktuelle Uhrzeit */}
-                <div className="text-center scale-y-110 scale-x-150 ml-96">
-                    <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
+                <div className="text-center scale-y-110 scale-x-150">
+                    <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds}/>
                 </div>
 
+                {/* Wetteranzeige */}
+                <div className="right-0 mb-20">
+                    <WeatherTile/>
+                </div>
             </div>
 
             {/* Gebetszeiten */}

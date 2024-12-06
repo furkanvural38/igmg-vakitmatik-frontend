@@ -10,7 +10,7 @@ function Header() {
             {/* Überschrift */}
             <div className="flex-1 flex items-stretch justify-center border-5 border-white rounded-3xl ml-16 py-4">
                 <h1 className="text-white text-header font-semibold text-center letter-spacing">
-                    HANNOVER ŞUBESİ AYASOFYA CÂMİ-İ
+                    GARBSEN ŞUBESİ EYÜP SULTAN CÂMİ-İ
                 </h1>
             </div>
         </header>
