@@ -4,7 +4,7 @@ import { DailyContentApiResponse } from "./types"; // Importiere die Typen
 
 export const fetchDailyContent = async (): Promise<DailyContentApiResponse> => {
     try {
-        const response = await fetch('http://localhost:8080/getIslamContent');
+        const response = await fetch('https://igmg-namaz.synology.me:3838/getIslamContent');
         if (!response.ok) {
             throw new Error('Netzwerkantwort war nicht ok.');
         }
