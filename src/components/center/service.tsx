@@ -4,7 +4,7 @@ import { PrayerTimesApiResponse } from "./types"; // Importiere die Typen
 
 export const fetchDailyPrayerTime = async (): Promise<PrayerTimesApiResponse> => {
     try {
-        const response = await fetch('https://igmg-namaz.synology.me:3838/getPrayerTime');
+        const response = await fetch('https://igmg-namaz.synology.me:3838/hannover');
         if (!response.ok) {
             throw new Error('Netzwerkantwort war nicht ok.');
         }
