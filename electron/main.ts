@@ -73,7 +73,8 @@ function createWindow() {
 
   // Regelmäßige Überprüfung
   setInterval(() => {
-    if (win) {
+    win?.focus()
+    if (win && !win.isFullScreen()) {
       console.log('Intervall-Check: Nicht im Vollbildmodus. Versuche zurückzusetzen...');
       focusAndFullScreen();
     }
@@ -83,9 +84,7 @@ function createWindow() {
   function focusAndFullScreen() {
     if (win) {
       win.focus();
-      if(!win.isFullScreen()){
-        forceFullScreen();
-      }
+      forceFullScreen();
     }
   }
 
