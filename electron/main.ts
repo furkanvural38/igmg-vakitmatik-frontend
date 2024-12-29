@@ -14,6 +14,7 @@ export const RENDERER_DIST = path.join(process.env.APP_ROOT, 'dist')
 process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, 'public') : RENDERER_DIST
 
 let win: BrowserWindow | null
+let zoomFactor = 1; // Globaler Zoom-Faktor
 
 function createWindow() {
   const primaryDisplay = screen.getPrimaryDisplay();
@@ -29,7 +30,7 @@ function createWindow() {
   const heightRatio = currentResolution.height / targetResolution.height;
 
   // Nimm den kleineren Faktor, um Verzerrungen zu vermeiden
-  const zoomFactor = Math.min(widthRatio, heightRatio);
+  zoomFactor = Math.min(widthRatio, heightRatio);
 
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
@@ -44,19 +45,19 @@ function createWindow() {
   // Event-Listener für Vollbildüberwachung
   win.on('leave-full-screen', () => {
     console.log('Vollbildmodus verlassen. Setze zurück...');
-    forceFullScreen();
+    focusAndFullScreen();
   });
 
   win.on('resize', () => {
     if (win && !win.isFullScreen()) {
       console.log('Fenstergröße geändert und nicht im Vollbildmodus. Zurücksetzen...');
-      forceFullScreen();
+      focusAndFullScreen();
     }
   });
 
   win.on('focus', () => {
     console.log('Fenster im Fokus. Stelle Vollbildmodus sicher...');
-    forceFullScreen();
+    focusAndFullScreen();
   });
 
   // Überwache das Display, wenn es wieder aktiviert wird
@@ -86,13 +87,17 @@ function createWindow() {
     }
   }
 
-  // Fallback: Manuelles Setzen der Fenstergröße
+  // Fallback: Vollbild und Zoom-Faktor erneut setzen
   function forceFullScreen() {
     if (win) {
       win.setFullScreen(true);
       const { width, height } = screen.getPrimaryDisplay().workAreaSize;
       win.setBounds({ x: 0, y: 0, width, height });
       console.log('Vollbildmodus erzwungen.');
+
+      // Zoom-Faktor erneut setzen
+      win.webContents.setZoomFactor(zoomFactor);
+      console.log(`Zoom-Faktor erneut gesetzt: ${zoomFactor}`);
     }
   }
 
