@@ -44,16 +44,32 @@ function createWindow() {
 
   function forceFullScreen() {
     if (win) {
+      console.log('Versuche Vollbildmodus zu erzwingen...');
+
+      // Stelle sicher, dass das Fenster im Vollbildmodus ist
       if (!win.isFullScreen()) {
-        console.log('Forcing Fullscreen...');
         win.setFullScreen(true);
       }
-      const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+
+      // Nutze die exakte Bildschirmgröße (nicht workAreaSize!)
+      const { width, height } = screen.getPrimaryDisplay().size;
+
+      // Erweitere das Fenster auf die volle Bildschirmgröße
       win.setBounds({ x: 0, y: 0, width, height });
+      console.log(`Vollbildgröße gesetzt auf: Breite=${width}, Höhe=${height}`);
+
+      // Wende den Zoom-Faktor an
       win.webContents.setZoomFactor(zoomFactor);
       console.log(`Zoom-Faktor erneut gesetzt: ${zoomFactor}`);
+
+      // Erzwinge eine kurze Verzögerung zur Stabilisierung
+      setTimeout(() => {
+        win?.setBounds({ x: 0, y: 0, width, height });
+        console.log('Vollbildmodus und Größe endgültig erzwungen.');
+      }, 500); // 500ms Verzögerung
     }
   }
+
 
   // Event-Handler für Display-Änderungen
   screen.on('display-added', () => {
