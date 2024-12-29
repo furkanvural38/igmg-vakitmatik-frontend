@@ -41,26 +41,41 @@ function createWindow() {
     autoHideMenuBar: true
   });
 
-  // Event-Listener, um den Vollbildmodus zu erzwingen
+  // Event-Listener für Vollbildüberwachung
   win.on('leave-full-screen', () => {
     console.log('Vollbildmodus verlassen. Setze zurück...');
-    win?.setFullScreen(true);
+    forceFullScreen();
   });
 
   win.on('resize', () => {
     if (win && !win.isFullScreen()) {
       console.log('Fenstergröße geändert und nicht im Vollbildmodus. Zurücksetzen...');
-      win.setFullScreen(true);
+      forceFullScreen();
     }
   });
 
-  // Überprüfe regelmäßig den Vollbildmodus
+  win.on('focus', () => {
+    console.log('Fenster im Fokus. Stelle Vollbildmodus sicher...');
+    forceFullScreen();
+  });
+
+  // Regelmäßige Überprüfung
   setInterval(() => {
     if (win && !win.isFullScreen()) {
       console.log('Intervall-Check: Nicht im Vollbildmodus. Versuche zurückzusetzen...');
-      win.setFullScreen(true);
+      forceFullScreen();
     }
   }, 3000); // Alle 3 Sekunden prüfen
+
+  // Fallback: Manuelles Setzen der Fenstergröße
+  function forceFullScreen() {
+    if (win) {
+      win.setFullScreen(true);
+      const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+      win.setBounds({ x: 0, y: 0, width, height });
+      console.log('Vollbildmodus erzwungen.');
+    }
+  }
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
