@@ -83,7 +83,9 @@ function createWindow() {
   function focusAndFullScreen() {
     if (win) {
       win.focus();
-      forceFullScreen();
+      if(!win.isFullScreen()){
+        forceFullScreen();
+      }
     }
   }
 
