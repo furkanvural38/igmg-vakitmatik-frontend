@@ -54,6 +54,14 @@ function createWindow() {
     }
   });
 
+  // Überprüfe regelmäßig den Vollbildmodus
+  setInterval(() => {
+    if (win && !win.isFullScreen()) {
+      console.log('Intervall-Check: Nicht im Vollbildmodus. Versuche zurückzusetzen...');
+      win.setFullScreen(true);
+    }
+  }, 3000); // Alle 3 Sekunden prüfen
+
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', new Date().toLocaleString());
