@@ -59,13 +59,32 @@ function createWindow() {
     forceFullScreen();
   });
 
+  // Überwache das Display, wenn es wieder aktiviert wird
+  screen.on('display-added', () => {
+    console.log('Ein Display wurde hinzugefügt. Stelle Vollbildmodus sicher...');
+    focusAndFullScreen();
+  });
+
+  screen.on('display-metrics-changed', () => {
+    console.log('Display-Metriken geändert. Stelle Vollbildmodus sicher...');
+    focusAndFullScreen();
+  });
+
   // Regelmäßige Überprüfung
   setInterval(() => {
     if (win && !win.isFullScreen()) {
       console.log('Intervall-Check: Nicht im Vollbildmodus. Versuche zurückzusetzen...');
-      forceFullScreen();
+      focusAndFullScreen();
     }
   }, 3000); // Alle 3 Sekunden prüfen
+
+  // Fokus und Vollbildmodus sicherstellen
+  function focusAndFullScreen() {
+    if (win) {
+      win.focus();
+      forceFullScreen();
+    }
+  }
 
   // Fallback: Manuelles Setzen der Fenstergröße
   function forceFullScreen() {
