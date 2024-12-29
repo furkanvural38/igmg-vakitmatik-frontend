@@ -34,48 +34,7 @@ function createWindow() {
     autoHideMenuBar: true,
   });
 
-  // Event-Listener für Vollbildüberwachung
-  win.on('leave-full-screen', () => {
-    console.log('Vollbildmodus verlassen. Setze zurück...');
-    focusAndFullScreen();
-  });
-
-  win.on('resize', () => {
-    if (win && !win.isFullScreen()) {
-      console.log('Fenstergröße geändert und nicht im Vollbildmodus. Zurücksetzen...');
-      focusAndFullScreen();
-    }
-  });
-
-  win.on('focus', () => {
-    console.log('Fenster im Fokus. Stelle Vollbildmodus sicher...');
-    focusAndFullScreen();
-  });
-
-  screen.on('display-added', () => {
-    console.log('Ein Display wurde hinzugefügt. Stelle Vollbildmodus sicher...');
-    focusAndFullScreen();
-  });
-
-  screen.on('display-metrics-changed', () => {
-    console.log('Display-Metriken geändert. Stelle Vollbildmodus sicher...');
-    focusAndFullScreen();
-  });
-
-  screen.on('display-removed', () => {
-    console.log('Ein Display wurde entfernt. Stelle Vollbildmodus sicher...');
-    focusAndFullScreen();
-  });
-
-  // Regelmäßige Überprüfung
-  setInterval(() => {
-    if (win && !win.isFullScreen()) {
-      console.log('Intervall-Check: Nicht im Vollbildmodus. Versuche zurückzusetzen...');
-      focusAndFullScreen();
-    }
-  }, 3000);
-
-  // Fokus und Vollbildmodus sicherstellen
+  // Sicherstellen, dass der Vollbildmodus immer aktiv bleibt
   function focusAndFullScreen() {
     if (win) {
       win.focus();
@@ -83,21 +42,65 @@ function createWindow() {
     }
   }
 
-  // Fallback: Vollbild und Zoom-Faktor erneut setzen
   function forceFullScreen() {
     if (win) {
       if (!win.isFullScreen()) {
+        console.log('Forcing Fullscreen...');
         win.setFullScreen(true);
       }
       const { width, height } = screen.getPrimaryDisplay().workAreaSize;
       win.setBounds({ x: 0, y: 0, width, height });
       win.webContents.setZoomFactor(zoomFactor);
-      console.log(`Vollbildmodus erzwungen und Zoom-Faktor gesetzt: ${zoomFactor}`);
+      console.log(`Zoom-Faktor erneut gesetzt: ${zoomFactor}`);
     }
   }
 
+  // Event-Handler für Display-Änderungen
+  screen.on('display-added', () => {
+    console.log('Ein Display wurde hinzugefügt. Erzwinge Vollbildmodus...');
+    setTimeout(() => focusAndFullScreen(), 1000); // Kurze Verzögerung für Stabilität
+  });
+
+  screen.on('display-metrics-changed', () => {
+    console.log('Display-Metriken geändert. Erzwinge Vollbildmodus...');
+    setTimeout(() => focusAndFullScreen(), 1000);
+  });
+
+  screen.on('display-removed', () => {
+    console.log('Ein Display wurde entfernt. Erzwinge Vollbildmodus...');
+    setTimeout(() => focusAndFullScreen(), 1000);
+  });
+
+  // Prüfe regelmäßig den Vollbildmodus
+  setInterval(() => {
+    if (win && (!win.isFullScreen() || !win.isFocused())) {
+      console.log('Intervall-Check: Nicht im Vollbildmodus oder nicht fokussiert. Erzwinge...');
+      focusAndFullScreen();
+    }
+  }, 2000);
+
+  // Fenster-Ereignisse
+  win.on('leave-full-screen', () => {
+    console.log('Vollbildmodus verlassen. Erzwinge erneut...');
+    focusAndFullScreen();
+  });
+
+  win.on('focus', () => {
+    console.log('Fenster im Fokus. Erzwinge Vollbildmodus...');
+    focusAndFullScreen();
+  });
+
+  win.on('resize', () => {
+    if (win && !win.isFullScreen()) {
+      console.log('Fenstergröße geändert und nicht im Vollbildmodus. Erzwinge...');
+      focusAndFullScreen();
+    }
+  });
+
+  // Direkt nach Laden des Fensters sicherstellen
   win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', new Date().toLocaleString());
+    console.log('Fenster geladen. Erzwinge Vollbildmodus...');
+    setTimeout(() => focusAndFullScreen(), 1000);
   });
 
   if (VITE_DEV_SERVER_URL) {
@@ -106,7 +109,7 @@ function createWindow() {
     win.loadFile(path.join(RENDERER_DIST, 'index.html'));
   }
 
-  // Direkt nach Erstellen sicherstellen
+  // Start-Check nach Fenster-Erstellung
   setTimeout(() => {
     focusAndFullScreen();
   }, 1000);
@@ -119,7 +122,7 @@ ipcMain.on('exit-fullscreen', () => {
   }
 });
 
-// Quit when all windows are closed, except on macOS
+// App-Ereignisse
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -127,7 +130,6 @@ app.on('window-all-closed', () => {
   }
 });
 
-// Stelle beim Aktivieren sicher, dass das Fenster erstellt wird
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
