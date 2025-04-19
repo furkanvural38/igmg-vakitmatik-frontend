@@ -80,7 +80,7 @@ const QubePrayerTime = () => {
             const hours = now.getHours();
             const minutes = now.getMinutes();
 
-            if (hours === 0 && minutes === 2) {
+            if (hours === 0 && minutes === 30) {
                 window.location.reload();
             }
         }, 60000);
