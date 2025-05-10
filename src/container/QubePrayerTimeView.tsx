@@ -1,4 +1,3 @@
-// QubePrayerTimeView.tsx
 import React from "react";
 import { PrayerTimes } from "../components/center/types";
 import DateBoxes from "../components/center/prayerTimeAndClockCenter/dateBoxes";
@@ -8,7 +7,7 @@ import { HiOutlineSun } from "react-icons/hi";
 import { AiFillSun } from "react-icons/ai";
 import { PiSunHorizonFill, PiSunHorizonLight } from "react-icons/pi";
 import { LuCloudSun } from "react-icons/lu";
-
+import WeatherTile from "../components/center/prayerTimeAndClockCenter/weatherOverview";
 
 interface Props {
     prayerTimes: PrayerTimes | null;
@@ -49,15 +48,24 @@ const QubePrayerTimeView: React.FC<Props> = ({
 
     return (
         <div className="relative w-full">
-            <div className="flex items-center justify-center mb-4">
-                <div className="absolute left-0">
+            <div className="flex items-center justify-between mb-4 w-full px-10">
+                {/* Datum */}
+                <div>
                     <DateBoxes prayerTimes={prayerTimes} />
                 </div>
-                <div className="text-center scale-y-110 scale-x-150 ml-96">
+
+                {/* Uhrzeit */}
+                <div className="text-center scale-y-110 scale-x-150">
                     <CurrentTimeDisplay hours={hours} minutes={minutes} seconds={seconds} />
+                </div>
+
+                {/* Wetter */}
+                <div className="mb-20 mr-2">
+                    <WeatherTile />
                 </div>
             </div>
 
+            {/* Gebetszeiten */}
             <div className="flex justify-center items-center space-x-28">
                 {prayerTimes &&
                     Object.entries(prayerLabels).map(([key, label]) => {
@@ -66,14 +74,10 @@ const QubePrayerTimeView: React.FC<Props> = ({
                             <div key={key} className="relative w-full">
                                 {isActive && (
                                     <div className="absolute -top-44 w-box">
-                                        <div className="text-center text-white mb-4 text-8xl">
-                                            {timeDifference}
-                                        </div>
-                                        <div
-                                            className={`h-8 relative w-full rounded-3xl overflow-hidden ${
-                                                progressPercentage > 90 ? "bg-red-500" : "bg-[#009972]"
-                                            }`}
-                                        >
+                                        <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
+                                        <div className={`h-8 relative w-full rounded-3xl overflow-hidden ${
+                                            progressPercentage > 90 ? "bg-red-500" : "bg-[#009972]"
+                                        }`}>
                                             <div
                                                 className="bg-[#4b4b4b] rounded-3xl h-full"
                                                 style={{ width: `${progressPercentage}%` }}
@@ -94,20 +98,20 @@ const QubePrayerTimeView: React.FC<Props> = ({
                                         {icons[key]}
                                     </div>
                                     <span className={`text-6xl mb-6 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
-                    {titles[key]}
-                  </span>
+                                        {titles[key]}
+                                    </span>
                                     <span
                                         className={`text-8xl font-semibold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}
                                     >
-                    {label}
-                  </span>
+                                        {label}
+                                    </span>
                                     <span
                                         className={`text-time font-semibold mt-4 ${
                                             isActive ? "text-white" : "text-[#a7a7a7]"
                                         }`}
                                     >
-                    {prayerTimes[key as keyof PrayerTimes] || "00:00"}
-                  </span>
+                                        {prayerTimes[key as keyof PrayerTimes] || "00:00"}
+                                    </span>
                                 </div>
                             </div>
                         );
