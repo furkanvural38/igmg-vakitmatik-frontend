@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { fetchDailyContent } from "./service";
 import { DailyContentApiResponse } from "./types";
 
@@ -10,46 +10,50 @@ const useDailyContent = () => {
     const [data, setData] = useState<DailyContentApiResponse | null>(null);
     const [index, setIndex] = useState<number>(0);
 
-    // Funktion zum Laden der Daten
-    useEffect(() => {
-        const loadData = async () => {
-           try {
-               const data = await fetchDailyContent();
-               setData(data)
-           } catch (error) {
-               console.error('Fehler beim Laden der Daten:', error);
-           }
+    // Daten nachladen – auch von außen nutzbar
+    const loadData = useCallback(async () => {
+        try {
+            const response = await fetchDailyContent();
+            setData(response);
+        } catch (error) {
+            console.error("Fehler beim Laden der Inhalte:", error);
         }
-        loadData();
     }, []);
 
+    // Initialer Ladevorgang
+    useEffect(() => {
+        loadData();
+    }, [loadData]);
 
+    // Textwechsel alle 30 Sekunden
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % 3);
         }, 30000);
-
         return () => clearInterval(interval);
     }, []);
 
-    if (!data) return { text: '', image: '' };
+    if (!data) return { text: "", image: "", reload: loadData };
 
     const items = [
         {
             text: `${data.data.verse} ${data.data.verseSource}`,
-            image: allahImage
+            image: allahImage,
         },
         {
             text: `${data.data.hadith} ${data.data.hadithSource}`,
-            image: muhammadImage
+            image: muhammadImage,
         },
         {
             text: `${data.data.pray} ${data.data.praySource}`,
-            image: duaImage
-        }
+            image: duaImage,
+        },
     ];
 
-    return items[index];
+    return {
+        ...items[index],
+        reload: loadData,
+    };
 };
 
 export default useDailyContent;

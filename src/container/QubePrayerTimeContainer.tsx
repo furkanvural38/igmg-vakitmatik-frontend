@@ -13,6 +13,33 @@ const QubePrayerTimeContainer = () => {
     const [progressPercentage, setProgressPercentage] = useState<number>(0);
     const currentTime = useCurrentTime();
     const titles = useChangeTitle();
+    const [currentDay, setCurrentDay] = useState<number>(new Date().getDate());
+
+    const loadData = async () => {
+        try {
+            const response: PrayerTimesApiResponse = await fetchDailyPrayerTime();
+            if (response.success && response.data.length > 0) {
+                setPrayerTimes(response.data[0]);
+            }
+        } catch (error) {
+            console.error("Fehler beim Laden der Daten:", error);
+        }
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const now = new Date();
+            const today = now.getDate();
+
+            if (today !== currentDay) {
+                setCurrentDay(today); // Neuer Tag → aktualisiere State
+                loadData();           // Lade Gebetszeiten neu
+            }
+        }, 60000); // Alle Minute prüfen
+
+        return () => clearInterval(interval);
+    }, [currentDay]);
+
 
     const timeToMinutes = (time: string): number => {
         const [hours, minutes] = time.split(":").map(Number);
