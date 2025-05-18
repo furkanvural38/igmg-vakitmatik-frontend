@@ -35,7 +35,8 @@ const QubePrayerTimeView: React.FC<Props> = ({
                                                  progressPercentage,
                                                  titles,
                                              }) => {
-    const [hours, minutes, seconds] = currentTime.split(":");
+    const timeParts = currentTime?.split(":") ?? ["00", "00", "00"];
+    const [hours, minutes, seconds] = timeParts;
 
     const prayerLabels: { [key: string]: string } = {
         fajr: "İmsak",
@@ -45,6 +46,10 @@ const QubePrayerTimeView: React.FC<Props> = ({
         maghrib: "Akşam",
         isha: "Yatsı",
     };
+
+    if (!prayerTimes) {
+        return <div className="text-white text-center p-10">Gebetszeiten werden geladen…</div>;
+    }
 
     return (
         <div className="relative w-full">
@@ -67,55 +72,54 @@ const QubePrayerTimeView: React.FC<Props> = ({
 
             {/* Gebetszeiten */}
             <div className="flex justify-center items-center space-x-28">
-                {prayerTimes &&
-                    Object.entries(prayerLabels).map(([key, label]) => {
-                        const isActive = key === currentPrayer;
-                        return (
-                            <div key={key} className="relative w-full">
-                                {isActive && (
-                                    <div className="absolute -top-44 w-box">
-                                        <div className="text-center text-white mb-4 text-8xl">{timeDifference}</div>
-                                        <div className={`h-8 relative w-full rounded-3xl overflow-hidden ${
+                {Object.entries(prayerLabels).map(([key, label]) => {
+                    const isActive = key === currentPrayer;
+                    const displayTime = prayerTimes?.[key as keyof PrayerTimes] ?? "00:00";
+
+                    return (
+                        <div key={key} className="relative w-full">
+                            {isActive && (
+                                <div className="absolute -top-44 w-box">
+                                    <div className="text-center text-white mb-4 text-8xl">
+                                        {timeDifference}
+                                    </div>
+                                    <div
+                                        className={`h-8 relative w-full rounded-3xl overflow-hidden ${
                                             progressPercentage > 90 ? "bg-red-500" : "bg-[#009972]"
-                                        }`}>
-                                            <div
-                                                className="bg-[#4b4b4b] rounded-3xl h-full"
-                                                style={{ width: `${progressPercentage}%` }}
-                                            ></div>
-                                        </div>
-                                    </div>
-                                )}
-                                <div
-                                    className={`w-box h-box flex flex-col justify-center items-center rounded-3xl shadow-lg ${
-                                        isActive
-                                            ? progressPercentage > 90
-                                                ? "bg-red-600"
-                                                : "bg-[#009972]"
-                                            : "bg-[#343434]"
-                                    }`}
-                                >
-                                    <div className={`text-8xl mb-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
-                                        {icons[key]}
-                                    </div>
-                                    <span className={`text-6xl mb-6 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
-                                        {titles[key]}
-                                    </span>
-                                    <span
-                                        className={`text-8xl font-semibold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}
-                                    >
-                                        {label}
-                                    </span>
-                                    <span
-                                        className={`text-time font-semibold mt-4 ${
-                                            isActive ? "text-white" : "text-[#a7a7a7]"
                                         }`}
                                     >
-                                        {prayerTimes[key as keyof PrayerTimes] || "00:00"}
-                                    </span>
+                                        <div
+                                            className="bg-[#4b4b4b] rounded-3xl h-full"
+                                            style={{ width: `${progressPercentage}%` }}
+                                        ></div>
+                                    </div>
                                 </div>
+                            )}
+                            <div
+                                className={`w-box h-box flex flex-col justify-center items-center rounded-3xl shadow-lg ${
+                                    isActive
+                                        ? progressPercentage > 90
+                                            ? "bg-red-600"
+                                            : "bg-[#009972]"
+                                        : "bg-[#343434]"
+                                }`}
+                            >
+                                <div className={`text-8xl mb-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                    {icons[key]}
+                                </div>
+                                <span className={`text-6xl mb-6 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                    {titles?.[key] ?? "-"}
+                                </span>
+                                <span className={`text-8xl font-semibold ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                    {label}
+                                </span>
+                                <span className={`text-time font-semibold mt-4 ${isActive ? "text-white" : "text-[#a7a7a7]"}`}>
+                                    {displayTime}
+                                </span>
                             </div>
-                        );
-                    })}
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

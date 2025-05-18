@@ -1,44 +1,40 @@
-import { useEffect, useState } from 'react';
-import { useAutoScroll } from '../components/footer/scrollFunction';
-import useDailyContent from '../components/footer/useDailyContent';
-import FooterView from './FooterView';
+import { useRef, useState, useEffect } from "react";
+import FooterView from "./FooterView";
+import { useAutoScroll } from "../components/footer/scrollFunction";
+import useDailyContent from "../components/footer/useDailyContent";
 
 const FooterContainer = () => {
-    const [scrollContainer, setScrollContainer] = useState<HTMLDivElement | null>(null);
-    const [content, setContent] = useState<HTMLDivElement | null>(null);
-    const { text, image, reload } = useDailyContent(); // ⬅️ reload nutzen
-    const [currentDay, setCurrentDay] = useState<number>(new Date().getDate());
+    const [scrollContainerRef, setScrollContainerRef] = useState<HTMLDivElement | null>(null);
+    const [textContentRef, setTextContentRef] = useState<HTMLDivElement | null>(null);
+    const { text, image, reload } = useDailyContent();
 
-    // Tageswechsel erkennen und Inhalte neu laden
+    const currentDayRef = useRef<number>(new Date().getDate());
+
+    // Tageswechsel erkennen
     useEffect(() => {
         const interval = setInterval(() => {
             const today = new Date().getDate();
-
-            if (today !== currentDay) {
-                setCurrentDay(today);
-                reload(); // ✅ nur Inhalte neu laden, kein Reload
+            if (today !== currentDayRef.current) {
+                currentDayRef.current = today;
+                reload();
             }
         }, 60000);
 
         return () => clearInterval(interval);
-    }, [currentDay, reload]);
+    }, [reload]);
 
-    // Textinhalt nachladen
-    useEffect(() => {
-        if (text && content) {
-            content.textContent = text;
-        }
-    }, [text, content]);
-
-    // Automatischer Scroll
-    useAutoScroll({ current: scrollContainer }, { current: content });
+    // ✅ Hook direkt aufrufen (nicht innerhalb von useEffect)
+    useAutoScroll(
+        { current: scrollContainerRef },
+        { current: textContentRef }
+    );
 
     return (
         <FooterView
             image={image}
             text={text}
-            handleScrollContainerRef={setScrollContainer}
-            handleContentRef={setContent}
+            handleScrollContainerRef={setScrollContainerRef}
+            handleContentRef={setTextContentRef}
         />
     );
 };
