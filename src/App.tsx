@@ -1,4 +1,4 @@
-import Header from './components/header/header';
+import Header from '../src/container/Header';
 import FooterContainer from '../src/container/FooterContainer.tsx';
 import QubePrayerTimeContainer from '../src/container/QubePrayerTimeContainer';
 

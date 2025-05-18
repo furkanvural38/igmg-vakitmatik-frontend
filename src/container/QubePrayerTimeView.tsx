@@ -7,7 +7,7 @@ import { HiOutlineSun } from "react-icons/hi";
 import { AiFillSun } from "react-icons/ai";
 import { PiSunHorizonFill, PiSunHorizonLight } from "react-icons/pi";
 import { LuCloudSun } from "react-icons/lu";
-import WeatherTile from "../components/center/prayerTimeAndClockCenter/weatherOverview";
+import WeatherTileContainer from "../container/WeatherTileContainer";
 
 interface Props {
     prayerTimes: PrayerTimes | null;
@@ -61,7 +61,7 @@ const QubePrayerTimeView: React.FC<Props> = ({
 
                 {/* Wetter */}
                 <div className="mb-20 mr-2">
-                    <WeatherTile />
+                    <WeatherTileContainer />
                 </div>
             </div>
 
