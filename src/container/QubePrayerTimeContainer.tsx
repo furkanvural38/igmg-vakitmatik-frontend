@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PrayerTimes, PrayerTimesApiResponse } from "../components/center/types";
-import { fetchDailyPrayerTime } from "../components/center/service";
+import { fetchDailyPrayerTimeWithFallback } from "../components/center/service";
 import useChangeTitle from "../components/center/prayerTimeAndClockCenter/useChangeTitle";
 import useCurrentTime from "../components/center/currentTimeRight/useCurrentTime";
 import QubePrayerTimeView from "./QubePrayerTimeView";
@@ -16,7 +16,7 @@ const QubePrayerTimeContainer = () => {
     // Gebetszeiten laden
     const loadData = async () => {
         try {
-            const response: PrayerTimesApiResponse = await fetchDailyPrayerTime();
+            const response: PrayerTimesApiResponse = await fetchDailyPrayerTimeWithFallback();
 
             if (response.success && response.data.length > 0) {
                 setPrayerTimes(response.data[0]);
