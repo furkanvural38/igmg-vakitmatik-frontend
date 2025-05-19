@@ -199,8 +199,6 @@ const QubePrayerTime = () => {
             </div>
         </div>
     );
-
-
 };
 
 export default QubePrayerTime;
