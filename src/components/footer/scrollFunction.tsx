@@ -38,7 +38,6 @@ export const useAutoScroll = (
         if (shouldScroll()) {
             startScrolling();
         }
-
         const resizeObserver = new ResizeObserver(() => {
             if (scrollInterval) clearInterval(scrollInterval);
             if (pauseTimeout) clearTimeout(pauseTimeout);
