@@ -34,8 +34,6 @@ function createWindow() {
     autoHideMenuBar: true,
   });
 
-  win.webContents.openDevTools({ mode: "right" }); // oder "bottom", "undocked", "detach"
-
   // Sicherstellen, dass der Vollbildmodus immer aktiv bleibt
   function focusAndFullScreen() {
     if (win) {
