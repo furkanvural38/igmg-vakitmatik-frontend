@@ -36,7 +36,7 @@ const WeatherTileView: React.FC<WeatherTileViewProps> = ({ data, isLoading, erro
     if (error) {
         return (
             <div className="text-center text-white">
-                <p>{error}</p>
+                <p>{""}</p>
             </div>
         );
     }
