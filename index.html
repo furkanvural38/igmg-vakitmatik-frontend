@@ -1,14 +1,21 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<html lang="de">
+<head>
     <meta charset="UTF-8" />
+    <!-- Nutzt den vollen Viewport, verhindert mobiles Auto-Zoom -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- public/ Assets; Vite prefixed das automatisch mit deinem base-Pfad -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/components/main/main.tsx"></script>
-  </body>
+    <title>IGMG Vakitmatik</title>
+</head>
+<body style="margin:0; background:#000; overflow:hidden;">
+<div id="root"></div>
+<!-- Vite dev: lädt deine TS/TSX-Entry, Build: wird zu bundle umgeschrieben -->
+<!-- LASSEN, wenn dein Entry hier liegt: -->
+<script type="module" src="/src/components/main/main.tsx"></script>
+<!-- Falls dein Entry stattdessen src/main.tsx ist, nimm diese Zeile:
+<script type="module" src="/src/main.tsx"></script>
+-->
+</body>
 </html>
