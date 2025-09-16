@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && electron-builder",
+    "build:web": "vite build --mode pages",
+    "preview": "vite preview",
+    "preview:web": "vite preview --port 4173 --strictPort --base /igmg-vakitmatik-frontend/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "spa:fallback": "cp dist/index.html dist/404.html || true"
   },
   "dependencies": {
     "@eslint/config-array": "^0.17.1",
