@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
 
-// Hilfsfunktion zum Formatieren der aktuellen Uhrzeit
+// Hilfsfunktion zum Formatieren der aktuellen Uhrzeit (24h)
 const getCurrentTime = () => {
     const now = new Date();
-    return now.toLocaleTimeString(); // Uhrzeit formatieren
+    return now.toLocaleTimeString("de-DE", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+    });
 };
 
 const useCurrentTime = () => {
@@ -12,9 +17,9 @@ const useCurrentTime = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentTime(getCurrentTime());
-        }, 1000); // Aktualisiere jede Sekunde
+        }, 1000);
 
-        return () => clearInterval(timer); // Aufräumen des Timers
+        return () => clearInterval(timer);
     }, []);
 
     return currentTime;
